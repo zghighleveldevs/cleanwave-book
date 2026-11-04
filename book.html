@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Your Walkthrough · CleanWave KC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#1A64D6;--navy:#0B1F3A;--aqua:#7FE3D6;--teal:#12A594;--ink:#0B1F3A;--muted:#4A5B73;--line:#E1E8F2;--bg:#F5F8FC}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Sora,Inter,sans-serif;margin:0;letter-spacing:-0.02em}
+a{color:var(--accent)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+
+.top{position:relative;background:var(--navy);color:#fff;padding:24px 0 120px;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;border:1.5px solid rgba(127,227,214,.22);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.10),rgba(255,255,255,0) 60%);animation:float 9s ease-in-out infinite;pointer-events:none}
+.waves{position:absolute;left:0;right:0;bottom:-1px;height:90px;overflow:hidden;pointer-events:none}
+.wave{position:absolute;bottom:0;left:0;width:200%;height:100%;animation:drift 18s linear infinite}
+.wave.w2{animation-duration:11s;animation-direction:reverse;opacity:.55}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;min-height:44px;font-family:Sora,sans-serif;font-weight:800;font-size:21px;letter-spacing:-0.02em}
+.phone{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700;min-height:44px}
+
+.steps{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:44px}
+.st{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#93A4BC}
+.st-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;border:1.5px solid rgba(255,255,255,.25)}
+.st-done{color:#BFF3EC}.st-done .st-dot{background:var(--teal);border-color:var(--teal);color:#fff}
+.st-now{color:#fff}.st-now .st-dot{background:var(--aqua);border-color:var(--aqua);color:var(--navy);animation:pulse 1.8s ease-out infinite}
+.st-line{flex:0 1 60px;height:2px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;position:relative}
+.st-line.fill::after{content:"";position:absolute;inset:0;background:var(--teal);transform-origin:left;animation:grow .9s .3s ease both}
+@media (max-width:640px){.st-line{display:none}}
+
+.layout{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;margin-top:-80px;position:relative;z-index:2;padding-bottom:80px}
+.side{flex:1 1 340px;min-width:0;max-width:400px}
+.main{flex:999 1 560px;min-width:0}
+@media (max-width:980px){.side{max-width:none;order:2}.main{order:1}}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:0 30px 60px -36px rgba(11,31,58,.45)}
+@media (max-width:640px){.card{padding:22px 16px}}
+.meta{display:flex;gap:12px;align-items:center;font-size:15px;font-weight:600;color:#33465F}
+.ico{flex:none;width:38px;height:38px;border-radius:11px;background:#EAF2FF;color:var(--accent);display:flex;align-items:center;justify-content:center}
+.chk{display:flex;gap:10px}
+
+.cal-card{padding:0;overflow:hidden}
+.cal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:24px 30px;border-bottom:1px solid var(--line)}
+@media (max-width:640px){.cal-head{padding:18px 16px}}
+.cal-body{position:relative;min-height:720px}
+.cal-body iframe{display:block;width:100%;min-height:720px;border:0;overflow:hidden;position:relative;z-index:1}
+.loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#5A6B82;font-size:15px;z-index:0}
+.spin{width:44px;height:44px;border-radius:50%;border:4px solid #E1E8F2;border-top-color:var(--accent);animation:spin .9s linear infinite}
+.cal-foot{padding:18px 30px;border-top:1px solid var(--line);text-align:center;font-size:14px;color:#5A6B82;background:#FAFCFE}
+
+.fu{opacity:0;animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.08s}.d2{animation-delay:.2s}.d3{animation-delay:.34s}.d4{animation-delay:.48s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,227,214,.6)}100%{box-shadow:0 0 0 12px rgba(127,227,214,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){*,*::after{animation:none !important;transition:none !important}.fu{opacity:1}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bubble" style="width:160px;height:160px;left:-40px;top:90px" aria-hidden="true"></div>
+  <div class="bubble" style="width:80px;height:80px;left:55%;top:30px;animation-delay:1.4s;animation-duration:7s" aria-hidden="true"></div>
+  <div class="bubble" style="width:220px;height:220px;right:-70px;top:20px;animation-delay:2.6s;animation-duration:12s" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="bar fu">
+      <a class="brand" href="index.html">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect width="38" height="38" rx="11" fill="#7FE3D6"/><path d="M7 21c3-4 6-4 9 0s6 4 9 0 4-3 6-1" stroke="#0B1F3A" stroke-width="2.6" stroke-linecap="round"/><path d="M7 14c3-4 6-4 9 0s6 4 9 0 4-3 6-1" stroke="#0B1F3A" stroke-width="2.6" stroke-linecap="round" opacity=".45"/></svg>
+        <span>CleanWave <span style="color:#7FE3D6">KC</span></span>
+      </a>
+      <a class="phone" href="tel:+18160000000">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FE3D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        (816) 000-0000
+      </a>
+    </div>
+
+    <div class="steps fu d1" aria-label="Booking progress">
+      <div class="st st-done"><span class="st-dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Request received</div>
+      <div class="st-line fill" aria-hidden="true"></div>
+      <div class="st st-now"><span class="st-dot">2</span>Pick your time</div>
+      <div class="st-line" aria-hidden="true"></div>
+      <div class="st"><span class="st-dot">3</span>Confirmed</div>
+    </div>
+
+    <h1 class="fu d2" style="font-size:clamp(32px,4.2vw,50px);line-height:1.08;margin-top:30px;max-width:760px">Great, you're almost done. <span style="color:#7FE3D6">Pick a time for Justin to visit.</span></h1>
+    <p class="fu d3" style="font-size:18px;line-height:1.6;color:#C6D3E6;margin:16px 0 0;max-width:620px">Your request isn't complete until you book a slot. Choose the day and time that works best, and Justin will meet you on-site for a free 30-minute walkthrough.</p>
+  </div>
+  <div class="waves" aria-hidden="true">
+    <svg class="wave w2" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 40 C 480 0, 960 80, 1440 40 C 1920 0, 2400 80, 2880 40 V100 H0Z" fill="#7FE3D6" opacity=".35"/></svg>
+    <svg class="wave" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 55 C 480 15, 960 95, 1440 55 C 1920 15, 2400 95, 2880 55 V100 H0Z" fill="#F5F8FC"/></svg>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+
+    <aside class="side fu d3">
+      <div class="card">
+        <div style="display:flex;gap:16px;align-items:center">
+          <img src="img/justin.jpg" alt="Justin Andrade" width="72" height="72" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid #7FE3D6;flex:none">
+          <div>
+            <p style="margin:0;font-size:13px;font-weight:700;color:#5A6B82;text-transform:uppercase;letter-spacing:.06em">You're meeting</p>
+            <p style="margin:4px 0 0;font-family:Sora,sans-serif;font-weight:700;font-size:20px">Justin Andrade</p>
+            <p style="margin:2px 0 0;font-size:14px;color:#5A6B82">Owner, CleanWave KC</p>
+          </div>
+        </div>
+        <h2 style="font-size:22px;margin:26px 0 18px">Free Facility Walkthrough</h2>
+        <div style="display:grid;gap:14px">
+          <div class="meta"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>30 minutes</div>
+          <div class="meta"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>On-site at your facility</div>
+          <div class="meta"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></span>Free, no obligation</div>
+          <div class="meta"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></span>Written proposal within 48 hours</div>
+        </div>
+        <div style="border-top:1px solid #E1E8F2;margin-top:24px;padding-top:22px">
+          <p style="margin:0 0 12px;font-weight:700;font-size:15px">What we'll cover</p>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:15px;color:#33465F;line-height:1.45">
+            <li class="chk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12A594" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M20 6 9 17l-5-5"/></svg>A quick tour of every area you need cleaned</li>
+            <li class="chk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12A594" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M20 6 9 17l-5-5"/></svg>Your schedule, priorities and problem spots</li>
+            <li class="chk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12A594" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M20 6 9 17l-5-5"/></svg>What's not working with your current cleaner</li>
+            <li class="chk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12A594" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M20 6 9 17l-5-5"/></svg>Any questions you have, answered on the spot</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;margin-top:18px;padding:0 6px;font-size:14px;color:#4A5B73;line-height:1.5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A64D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Fully insured &amp; bonded · Locally owned in Olathe, KS
+      </div>
+    </aside>
+
+    <main class="main fu d4">
+      <div class="card cal-card">
+        <div class="cal-head">
+          <h2 style="font-size:22px">Select a date &amp; time</h2>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#4A5B73;background:#F5F8FC;border-radius:99px;padding:8px 14px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            30-minute walkthrough
+          </span>
+        </div>
+        <div class="cal-body">
+          <div class="loader" aria-hidden="true"><div class="spin"></div>Loading Justin's calendar…</div>
+          <!-- GoHighLevel booking calendar: Facility Walkthrough -->
+          <iframe src="https://api.leadconnectorhq.com/widget/booking/O9wIKMDIUpyQUv16Jgum" scrolling="no" id="O9wIKMDIUpyQUv16Jgum_1793714400" title="Book your CleanWave KC walkthrough"></iframe>
+          <script src="https://link.msgsreceived.com/js/form_embed.js" type="text/javascript"></script>
+        </div>
+        <div class="cal-foot">None of these times work? <a href="tel:+18160000000">Call or text Justin</a> or <a href="https://api.leadconnectorhq.com/widget/booking/O9wIKMDIUpyQUv16Jgum" target="_blank" rel="noopener">open the calendar in a new tab</a>.</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer style="background:#071629;color:#93A4BC;padding:28px 0;font-size:14px">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between">
+    <span>© 2026 CleanWave KC · Olathe, Kansas · hello@cleanwavekc.com</span>
+    <span><a href="https://cleanwave-kc.vercel.app/privacy-policy" style="color:#C6D3E6">Privacy Policy</a> · <a href="https://cleanwave-kc.vercel.app/terms" style="color:#C6D3E6">Terms of Service</a></span>
+  </div>
+</footer>
+
+<script>
+  // Pass contact details from the quote form (query string) into the booking widget so they're pre-filled.
+  (function () {
+    var qs = window.location.search;
+    if (!qs) return;
+    var f = document.getElementById('O9wIKMDIUpyQUv16Jgum_1793714400');
+    if (f) f.src = f.src.split('?')[0] + qs;
+  })();
+</script>
+</body>
+</html>

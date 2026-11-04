@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Commercial Cleaning Walkthrough · CleanWave KC</title>
+<meta name="description" content="Book a free 30-minute walkthrough with the owner of CleanWave KC. Reliable, insured commercial cleaning across the Kansas City metro, with a fixed monthly price in 48 hours.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 38'%3E%3Crect width='38' height='38' rx='11' fill='%237FE3D6'/%3E%3Cpath d='M7 21c3-4 6-4 9 0s6 4 9 0 4-3 6-1' stroke='%230B1F3A' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F8FC}
+a{color:#1A64D6}a:hover{color:#0F4AA8}
+.cw{font-family:Inter,system-ui,sans-serif;color:#0B1F3A;background:#F5F8FC;overflow-x:hidden}
+.cw *{box-sizing:border-box}
+.cw h1,.cw h2,.cw h3{font-family:Sora,Inter,sans-serif;margin:0;letter-spacing:-0.02em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px var(--accent)}
+.btn-primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 16px 30px -12px var(--accent)}
+.btn-primary::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.btn-ghost:hover{color:#fff;border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-light{background:#fff;color:#0B1F3A;border:1.5px solid #D5DEEA}
+.btn-light:hover{color:#0B1F3A;border-color:#0B1F3A}
+.btn-block{width:100%}
+
+/* hero */
+.hero{position:relative;background:#0B1F3A;color:#fff;padding:28px 0 150px;overflow:hidden}
+.hero-grid{display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start;margin-top:56px}
+.hero-copy{flex:1 1 460px;min-width:0;padding-top:12px}
+.hero-form{flex:1 1 440px;min-width:0}
+.h1{font-size:clamp(38px,5vw,62px);line-height:1.04}
+.hl{color:#7FE3D6;position:relative;white-space:nowrap}
+.hl svg{position:absolute;left:0;bottom:-10px;width:100%;height:14px}
+.hl path{stroke-dasharray:320;stroke-dashoffset:320;animation:draw 1.2s .9s ease forwards}
+.bubble{position:absolute;border-radius:50%;border:1.5px solid rgba(127,227,214,.22);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.10),rgba(255,255,255,0) 60%);animation:float 9s ease-in-out infinite;pointer-events:none}
+.waves{position:absolute;left:0;right:0;bottom:-1px;height:110px;overflow:hidden;pointer-events:none}
+.wave{position:absolute;bottom:0;left:0;width:200%;height:100%;animation:drift 18s linear infinite}
+.wave.w2{animation-duration:11s;animation-direction:reverse;opacity:.55}
+
+/* entrance */
+.fu{opacity:0;animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}.d5{animation-delay:.5s}.d6{animation-delay:.62s}
+
+/* form card */
+.card-form{background:#fff;color:#0B1F3A;border-radius:22px;padding:30px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55)}
+@media (max-width:640px){.card-form{padding:22px 18px}}
+.track{height:8px;background:#E8EEF6;border-radius:99px;overflow:hidden}
+.bar{height:100%;background:var(--accent);border-radius:99px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile,.chip{font-family:inherit;font-size:14px;font-weight:600;color:#0B1F3A;background:#F5F8FC;border:1.5px solid #D5DEEA;border-radius:12px;cursor:pointer;transition:all .18s ease;text-align:left}
+.tile{min-height:56px;padding:10px 12px;line-height:1.25}
+.chip{min-height:44px;padding:0 14px;text-align:center}
+.tile:hover,.chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+.tile-on,.chip-on{background:#EAF2FF;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,100,214,.15);color:#0B1F3A}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.lbl{display:block;font-size:13px;font-weight:700;color:#33465F;margin:0 0 8px}
+.inp{width:100%;min-height:48px;padding:0 14px;font-family:inherit;font-size:15px;color:#0B1F3A;background:#fff;border:1.5px solid #C9D4E3;border-radius:10px;transition:border-color .18s, box-shadow .18s}
+.inp:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,100,214,.18)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+.stepin{animation:stepIn .45s cubic-bezier(.2,.7,.2,1)}
+.err{color:#B42318;font-size:14px;font-weight:600;margin:0}
+.check circle{stroke-dasharray:180;stroke-dashoffset:180;animation:draw .7s ease forwards}
+.check path{stroke-dasharray:50;stroke-dashoffset:50;animation:draw .45s .55s ease forwards}
+.pop{animation:pop .6s cubic-bezier(.2,1.4,.4,1)}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.trust{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.trust-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E1E8F2;border-radius:16px;padding:18px;font-weight:700;font-size:15px}
+.ico{flex:none;width:42px;height:42px;border-radius:12px;background:#EAF2FF;color:var(--accent);display:flex;align-items:center;justify-content:center}
+
+/* sections */
+.sec{padding:96px 0}
+@media (max-width:640px){.sec{padding:64px 0}}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.h2{font-size:clamp(30px,3.6vw,46px);line-height:1.1}
+.lead{font-size:18px;line-height:1.6;color:#4A5B73;margin:16px 0 0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media (max-width:900px){.grid3,.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #E1E8F2;border-radius:20px;padding:30px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(11,31,58,.35);border-color:#C9D4E3}
+.li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.5;margin:0 0 14px}
+.num{font-family:Sora,sans-serif;font-weight:800;font-size:15px;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center}
+.connector{position:absolute;top:22px;left:60px;right:-30px;height:2px;background:repeating-linear-gradient(90deg,#C9D4E3 0 8px,transparent 8px 16px)}
+@media (max-width:900px){.connector{display:none}}
+.promise{background:#0B1F3A;color:#fff;border-radius:20px;padding:28px}
+.promise-big{font-family:Sora,sans-serif;font-weight:800;font-size:40px;color:#7FE3D6;line-height:1}
+
+/* marquee */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mtrack{display:flex;gap:12px;width:max-content;animation:marquee 38s linear infinite}
+.marquee:hover .mtrack{animation-play-state:paused}
+.pill{white-space:nowrap;background:#fff;border:1px solid #D5DEEA;border-radius:99px;padding:12px 20px;font-weight:600;font-size:15px}
+
+/* faq */
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;padding:22px 0;font-family:Sora,sans-serif;font-weight:700;font-size:18px;color:#0B1F3A;text-align:left;cursor:pointer;min-height:44px}
+.faq-ic{flex:none;width:32px;height:32px;border-radius:50%;background:#EAF2FF;color:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform .3s ease}
+.faq-ic.open{transform:rotate(45deg);background:var(--accent);color:#fff}
+.faq-a{margin:0 0 22px;font-size:16px;line-height:1.65;color:#4A5B73;animation:stepIn .35s ease}
+
+/* scroll reveal */
+@supports (animation-timeline: view()){
+  .rv{animation:rvIn linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes rvIn{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes stepIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-26px)}}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,227,214,.6)}100%{box-shadow:0 0 0 12px rgba(127,227,214,0)}}
+.dot{width:8px;height:8px;border-radius:50%;background:#7FE3D6;animation:pulse 1.8s ease-out infinite}
+
+.nomotion *,.nomotion *::after{animation:none !important;transition:none !important}
+.nomotion .fu{opacity:1}
+.nomotion .hl path,.nomotion .check circle,.nomotion .check path{stroke-dashoffset:0}
+@media (prefers-reduced-motion: reduce){
+  .cw *,.cw *::after{animation:none !important;transition:none !important}
+  .cw .fu{opacity:1}
+  .cw .hl path,.cw .check circle,.cw .check path{stroke-dashoffset:0}
+}
+</style>
+<style>[hidden]{display:none !important}
+.rv-js{opacity:0;transform:translateY(44px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv-js.rv-in{opacity:1;transform:none}
+button:disabled{opacity:.7;cursor:wait}
+</style>
+</head>
+<body>
+<div class="cw" style="--accent: #1A64D6; width: 100%; min-height: 100vh">
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="bubble" style="width: 180px; height: 180px; left: -40px; top: 120px; animation-delay: 0s" aria-hidden="true"></div>
+  <div class="bubble" style="width: 70px; height: 70px; left: 42%; top: 70px; animation-delay: 1.2s; animation-duration: 7s" aria-hidden="true"></div>
+  <div class="bubble" style="width: 120px; height: 120px; right: 6%; top: 40px; animation-delay: 2.4s; animation-duration: 11s" aria-hidden="true"></div>
+  <div class="bubble" style="width: 46px; height: 46px; left: 30%; bottom: 170px; animation-delay: .6s; animation-duration: 6s" aria-hidden="true"></div>
+  <div class="bubble" style="width: 260px; height: 260px; right: -90px; bottom: 60px; animation-delay: 3s; animation-duration: 13s" aria-hidden="true"></div>
+
+  <div class="wrap" style="position: relative; z-index: 1">
+    <div class="fu" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect width="38" height="38" rx="11" fill="#7FE3D6"></rect><path d="M7 21c3-4 6-4 9 0s6 4 9 0 4-3 6-1" stroke="#0B1F3A" stroke-width="2.6" stroke-linecap="round"></path><path d="M7 14c3-4 6-4 9 0s6 4 9 0 4-3 6-1" stroke="#0B1F3A" stroke-width="2.6" stroke-linecap="round" opacity=".45"></path></svg>
+        <span style="font-family: Sora, sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.02em">CleanWave <span style="color: #7FE3D6">KC</span></span>
+      </div>
+      <a href="tel:+18160000000" style="display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; min-height: 44px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FE3D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+        (816) 000-0000
+      </a>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="fu d1" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(127,227,214,.12); border: 1px solid rgba(127,227,214,.3); color: #BFF3EC; padding: 8px 14px; border-radius: 99px; font-size: 14px; font-weight: 600">
+          <span class="dot"></span>For Kansas City office &amp; property managers
+        </div>
+        <h1 class="h1 fu d2" style="margin-top: 22px">Commercial cleaning that <span class="hl">shows up.<svg viewBox="0 0 300 14" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M3 10C60 3 140 2 297 8" stroke="#7FE3D6" stroke-width="5" stroke-linecap="round"></path></svg></span> Every time.</h1>
+        <p class="fu d3" style="font-size: 19px; line-height: 1.6; color: #C6D3E6; margin: 26px 0 0; max-width: 540px">Most businesses don't switch cleaners over price. They switch because cleanings get missed and nobody calls back. Book a free 30-minute walkthrough and get a fixed monthly price within 48 hours.</p>
+        <ul class="fu d4" style="list-style: none; padding: 0; margin: 30px 0 0; display: grid; gap: 14px">
+          <li style="display: flex; gap: 12px; align-items: center; font-size: 16px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FE3D6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>The owner walks your floor, not a salesperson</li>
+          <li style="display: flex; gap: 12px; align-items: center; font-size: 16px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FE3D6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Plans built around your hours, after-hours included</li>
+          <li style="display: flex; gap: 12px; align-items: center; font-size: 16px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FE3D6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Honest pricing: the walkthrough quote is the price</li>
+          <li style="display: flex; gap: 12px; align-items: center; font-size: 16px; font-weight: 500"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FE3D6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>No obligation, no pressure</li>
+        </ul>
+        <div class="fu d5" style="display: flex; align-items: center; gap: 14px; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.12)">
+          <img src="img/justin.jpg" alt="Justin Andrade" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid #7FE3D6; flex: none">
+          <div style="font-size: 15px; line-height: 1.5; color: #C6D3E6"><strong style="color: #fff">Justin Andrade, Owner</strong><br>Locally owned &amp; operated in Olathe, KS</div>
+        </div>
+      </div>
+
+      <!-- ===== QUOTE FORM ===== -->
+      <div class="hero-form fu d4" id="quote">
+        <div class="card-form">
+          <form id="qf" novalidate>
+            <div id="qf-progress">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px">
+                <span id="qf-steplabel" style="font-size: 13px; font-weight: 700; color: #33465F">Step 1 of 3</span>
+                <span style="font-size: 13px; color: #5A6B82">Takes about 60 seconds</span>
+              </div>
+              <div class="track"><div class="bar" id="qf-bar" style="width: 33.4%"></div></div>
+            </div>
+
+            <!-- STEP 1 -->
+            <div class="stepin" data-step="1" style="margin-top: 22px; display: grid; gap: 22px">
+              <h2 style="font-size: 24px; line-height: 1.2">Get your free walkthrough</h2>
+              <div>
+                <span class="lbl" id="g-facility">What type of facility?</span>
+                <div class="tiles" data-group="facility" role="group" aria-labelledby="g-facility">
+                  <button type="button" class="tile">Office</button>
+                  <button type="button" class="tile">Medical / Dental</button>
+                  <button type="button" class="tile">Retail</button>
+                  <button type="button" class="tile">Warehouse / Industrial</button>
+                  <button type="button" class="tile">Property / Multi-tenant</button>
+                  <button type="button" class="tile">School / Church / Daycare</button>
+                  <button type="button" class="tile">Gym / Fitness</button>
+                  <button type="button" class="tile">Other commercial</button>
+                  <button type="button" class="tile">Residential home</button>
+                </div>
+              </div>
+              <div>
+                <span class="lbl" id="g-freq">How often do you need cleaning?</span>
+                <div class="chips" data-group="frequency" role="group" aria-labelledby="g-freq">
+                  <button type="button" class="chip">1x per week</button>
+                  <button type="button" class="chip">2–3x per week</button>
+                  <button type="button" class="chip">5x per week</button>
+                  <button type="button" class="chip">Daily</button>
+                  <button type="button" class="chip">One-time / not sure</button>
+                </div>
+              </div>
+              <p class="err" role="alert" hidden></p>
+              <button type="button" class="btn btn-primary btn-block" data-next="1">Continue
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+            </div>
+
+            <!-- RESIDENTIAL -->
+            <div class="stepin" data-step="res" hidden style="margin-top: 22px; display: grid; gap: 16px; text-align: center; padding: 12px 0">
+              <div class="pop" style="width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; background: #FFF4E5; color: #B54708; display: flex; align-items: center; justify-content: center">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21H3z"></path><path d="M9 21v-6h6v6"></path></svg>
+              </div>
+              <h2 style="font-size: 24px">We serve businesses only</h2>
+              <p style="margin: 0; color: #4A5B73; line-height: 1.6">Thanks for thinking of us! CleanWave KC focuses on commercial facilities, so we're not the right fit for home cleaning.</p>
+              <button type="button" class="btn btn-light btn-block" data-go="1" data-reset-res>Choose a different facility type</button>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="stepin" data-step="2" hidden style="margin-top: 22px; display: grid; gap: 20px">
+              <h2 style="font-size: 24px; line-height: 1.2">Tell us about your space</h2>
+              <div>
+                <span class="lbl" id="g-size">Approx. square footage</span>
+                <div class="chips" data-group="square_footage" role="group" aria-labelledby="g-size">
+                  <button type="button" class="chip">Under 2,500</button>
+                  <button type="button" class="chip">2,500–5,000</button>
+                  <button type="button" class="chip">5,000–10,000</button>
+                  <button type="button" class="chip">10,000–25,000</button>
+                  <button type="button" class="chip">25,000+</button>
+                  <button type="button" class="chip">Not sure</button>
+                </div>
+              </div>
+              <div>
+                <span class="lbl" id="g-cur">Do you currently have a cleaning company?</span>
+                <div class="chips" data-group="current_cleaner" role="group" aria-labelledby="g-cur">
+                  <button type="button" class="chip">Yes, switching</button>
+                  <button type="button" class="chip">No</button>
+                </div>
+              </div>
+              <div>
+                <span class="lbl" id="g-start">When would you like to start?</span>
+                <div class="chips" data-group="start_timeline" role="group" aria-labelledby="g-start">
+                  <button type="button" class="chip">ASAP</button>
+                  <button type="button" class="chip">Within 30 days</button>
+                  <button type="button" class="chip">1–3 months</button>
+                  <button type="button" class="chip">Just comparing</button>
+                </div>
+              </div>
+              <div>
+                <label class="lbl" for="zip">Facility ZIP code</label>
+                <input class="inp" id="zip" name="postal_code" type="text" inputmode="numeric" maxlength="5" placeholder="66061" autocomplete="postal-code" style="max-width: 200px">
+              </div>
+              <p class="err" role="alert" hidden></p>
+              <div style="display: flex; gap: 10px">
+                <button type="button" class="btn btn-light" data-go="1" aria-label="Back">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+                <button type="button" class="btn btn-primary" style="flex: 1" data-next="2">Almost done
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="stepin" data-step="3" hidden style="margin-top: 22px; display: grid; gap: 14px">
+              <h2 style="font-size: 24px; line-height: 1.2">Where should we send your booking link?</h2>
+              <div class="two">
+                <div><label class="lbl" for="fn">First name</label><input class="inp" id="fn" name="first_name" type="text" autocomplete="given-name" required></div>
+                <div><label class="lbl" for="ln">Last name</label><input class="inp" id="ln" name="last_name" type="text" autocomplete="family-name" required></div>
+              </div>
+              <div><label class="lbl" for="co">Company name</label><input class="inp" id="co" name="company_name" type="text" autocomplete="organization" required></div>
+              <div class="two">
+                <div><label class="lbl" for="em">Work email</label><input class="inp" id="em" name="email" type="email" autocomplete="email" required></div>
+                <div><label class="lbl" for="ph">Mobile phone</label><input class="inp" id="ph" name="phone" type="tel" autocomplete="tel" required></div>
+              </div>
+              <div>
+                <label class="lbl" for="role">Your role</label>
+                <select class="inp" id="role" name="role">
+                  <option>Business Owner</option>
+                  <option>Office Manager</option>
+                  <option>Property Manager</option>
+                  <option>Facility Manager</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 12px; line-height: 1.5; color: #5A6B82; cursor: pointer">
+                <input type="checkbox" name="sms_consent" value="yes" style="width: 18px; height: 18px; margin: 2px 0 0; flex: none; accent-color: #1A64D6">
+                <span>By checking this box, you agree to receive text messages from CleanWave KC about your quote and appointment. Message and data rates may apply. Reply STOP to opt out. Message frequency varies. See our <a href="https://cleanwave-kc.vercel.app/privacy-policy">Privacy Policy</a>.</span>
+              </label>
+              <p class="err" role="alert" hidden></p>
+              <div style="display: flex; gap: 10px; margin-top: 4px">
+                <button type="button" class="btn btn-light" data-go="2" aria-label="Back">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+                <button type="submit" class="btn btn-primary" style="flex: 1">Get My Free Walkthrough</button>
+              </div>
+              <p style="margin: 0; font-size: 13px; color: #5A6B82; text-align: center">No obligation. Your details stay with CleanWave KC.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="waves" aria-hidden="true">
+    <svg class="wave w2" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 40 C 480 0, 960 80, 1440 40 C 1920 0, 2400 80, 2880 40 V100 H0Z" fill="#7FE3D6" opacity=".35"></path></svg>
+    <svg class="wave" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 55 C 480 15, 960 95, 1440 55 C 1920 15, 2400 95, 2880 55 V100 H0Z" fill="#F5F8FC"></path></svg>
+  </div>
+</header>
+
+<!-- ================= TRUST STRIP ================= -->
+<section style="margin-top: -40px; position: relative; z-index: 2">
+  <div class="wrap">
+    <div class="trust rv">
+      <div class="trust-item"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>Fully insured &amp; bonded</div>
+      <div class="trust-item"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c0-4 3-6 7-6s7 2 7 6"></path><path d="m16 11 2 2 4-4"></path></svg></span>Background-checked staff</div>
+      <div class="trust-item"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></span>Locally owned in Kansas City</div>
+      <div class="trust-item"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"></circle><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"></path></svg></span>100% satisfaction guarantee</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM / FIX ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv" style="max-width: 760px">
+      <span class="eyebrow">Tired of chasing your cleaning company?</span>
+      <h2 class="h2">You shouldn't have to check whether the cleaners came last night.</h2>
+    </div>
+    <div class="grid2" style="margin-top: 48px">
+      <div class="card rv" style="background: #FFF8F5; border-color: #F6DCCF">
+        <h3 style="font-size: 20px; margin-bottom: 22px; color: #9A3412">What usually goes wrong</h3>
+        <p class="li"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M18 6 6 18M6 6l12 12"></path></svg>Missed or skipped cleanings</p>
+        <p class="li"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M18 6 6 18M6 6l12 12"></path></svg>Nobody calls you back</p>
+        <p class="li"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M18 6 6 18M6 6l12 12"></path></svg>Quality slips after the first month</p>
+        <p class="li" style="margin: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2.4" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M18 6 6 18M6 6l12 12"></path></svg>A different crew every week</p>
+      </div>
+      <div class="card rv" style="background: #F0FBF9; border-color: #C7EEE8">
+        <h3 style="font-size: 20px; margin-bottom: 22px; color: #0F766E">How CleanWave fixes it</h3>
+        <p class="li"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>One point of contact: Justin, the owner</p>
+        <p class="li"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>Checklist-based cleaning every visit</p>
+        <p class="li"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>Regular quality inspections</p>
+        <p class="li" style="margin: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>Issues answered within one business day</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROMISES ================= -->
+<section style="padding: 0 0 24px">
+  <div class="wrap">
+    <div class="grid4">
+      <div class="promise rv"><div class="promise-big">30 min</div><p style="margin: 12px 0 0; color: #C6D3E6; line-height: 1.5">Free on-site walkthrough, no obligation</p></div>
+      <div class="promise rv"><div class="promise-big">48 hrs</div><p style="margin: 12px 0 0; color: #C6D3E6; line-height: 1.5">Written plan and fixed monthly price</p></div>
+      <div class="promise rv"><div class="promise-big">1 day</div><p style="margin: 12px 0 0; color: #C6D3E6; line-height: 1.5">Response time on any issue you report</p></div>
+      <div class="promise rv"><div class="promise-big">1 contact</div><p style="margin: 12px 0 0; color: #C6D3E6; line-height: 1.5">Text or call the owner directly</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv" style="text-align: center; max-width: 680px; margin: 0 auto">
+      <span class="eyebrow">How it works</span>
+      <h2 class="h2">From first hello to spotless, in three steps</h2>
+    </div>
+    <div class="grid3" style="margin-top: 56px">
+      <div class="rv" style="position: relative">
+        <div class="connector" aria-hidden="true"></div>
+        <div class="num" style="position: relative">1</div>
+        <h3 style="font-size: 21px; margin: 22px 0 10px">Book a walkthrough</h3>
+        <p style="margin: 0; color: #4A5B73; line-height: 1.6">Answer a few quick questions and pick a time that works for you. It takes less than a minute.</p>
+      </div>
+      <div class="rv" style="position: relative">
+        <div class="connector" aria-hidden="true"></div>
+        <div class="num" style="position: relative">2</div>
+        <h3 style="font-size: 21px; margin: 22px 0 10px">We tour your space</h3>
+        <p style="margin: 0; color: #4A5B73; line-height: 1.6">Justin walks your facility with you, learns your schedule and priorities, and answers your questions.</p>
+      </div>
+      <div class="rv">
+        <div class="num">3</div>
+        <h3 style="font-size: 21px; margin: 22px 0 10px">Get your custom quote</h3>
+        <p style="margin: 0; color: #4A5B73; line-height: 1.6">A written cleaning plan and a fixed monthly price lands in your inbox within 48 hours.</p>
+      </div>
+    </div>
+    <div class="rv" style="text-align: center; margin-top: 52px">
+      <a class="btn btn-primary" href="#quote">Book My Free Walkthrough</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INDUSTRIES ================= -->
+<section class="sec" style="background: #fff">
+  <div class="wrap">
+    <div class="rv" style="max-width: 720px">
+      <span class="eyebrow">Who we clean for</span>
+      <h2 class="h2">Recurring cleaning plans for the way your facility works</h2>
+    </div>
+    <div class="grid3" style="margin-top: 48px">
+      <div class="card rv" style="background: #F5F8FC"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1"></rect><path d="M9 7h1M14 7h1M9 11h1M14 11h1M10 21v-4h4v4"></path></svg></span><h3 style="font-size: 19px; margin: 18px 0 8px">Offices</h3><p style="margin: 0; color: #4A5B73; line-height: 1.6">Clean workspaces your team and clients notice.</p></div>
+      <div class="card rv" style="background: #F5F8FC"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path><rect x="3" y="3" width="18" height="18" rx="4"></rect></svg></span><h3 style="font-size: 19px; margin: 18px 0 8px">Medical &amp; Dental</h3><p style="margin: 0; color: #4A5B73; line-height: 1.6">Disinfection of exam rooms, waiting areas and high-touch surfaces.</p></div>
+      <div class="card rv" style="background: #F5F8FC"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13"></path><path d="M9 21v-6h6v6"></path></svg></span><h3 style="font-size: 19px; margin: 18px 0 8px">Property Management</h3><p style="margin: 0; color: #4A5B73; line-height: 1.6">Common areas, lobbies and multi-tenant buildings.</p></div>
+      <div class="card rv" style="background: #F5F8FC"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1 12H5z"></path><path d="M8 9V7a4 4 0 0 1 8 0v2"></path></svg></span><h3 style="font-size: 19px; margin: 18px 0 8px">Retail Spaces</h3><p style="margin: 0; color: #4A5B73; line-height: 1.6">Spotless storefronts, fitting rooms and restrooms.</p></div>
+      <div class="card rv" style="background: #F5F8FC"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21V9l10-6 10 6v12"></path><path d="M6 21v-8h12v8M6 17h12"></path></svg></span><h3 style="font-size: 19px; margin: 18px 0 8px">Warehouses &amp; Industrial</h3><p style="margin: 0; color: #4A5B73; line-height: 1.6">Break rooms, offices, restrooms and floor care.</p></div>
+      <div class="card rv" style="background: #F5F8FC"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M10 4h4"></path><path d="M5 21V10l7-4 7 4v11"></path><path d="M10 21v-5h4v5"></path></svg></span><h3 style="font-size: 19px; margin: 18px 0 8px">Schools, Churches &amp; Daycares</h3><p style="margin: 0; color: #4A5B73; line-height: 1.6">Safe, healthy spaces for kids and communities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OWNER ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+      <div class="rv" style="flex: 1 1 360px; min-width: 0; max-width: 460px">
+        <div style="position: relative; aspect-ratio: 4 / 5; border-radius: 28px; background: #0B1F3A; overflow: hidden; display: flex; align-items: center; justify-content: center">
+          <div class="bubble" style="width: 220px; height: 220px; left: -60px; top: -40px" aria-hidden="true"></div>
+          <div class="bubble" style="width: 140px; height: 140px; right: -30px; bottom: 40px; animation-delay: 2s" aria-hidden="true"></div>
+          <div style="text-align: center; color: #C6D3E6">
+            <img class="pop" src="img/justin.jpg" alt="Justin Andrade, owner of CleanWave KC" style="width: 240px; height: 240px; margin: 0 auto 70px; border-radius: 50%; object-fit: cover; display: block; border: 6px solid #7FE3D6; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6)">
+          </div>
+          <div style="position: absolute; left: 20px; bottom: 20px; background: #fff; color: #0B1F3A; border-radius: 14px; padding: 12px 16px; font-size: 14px; line-height: 1.4; box-shadow: 0 16px 30px -16px rgba(0,0,0,.5)"><strong>Justin Andrade</strong><br>Owner, CleanWave KC</div>
+        </div>
+      </div>
+      <div class="rv" style="flex: 1 1 440px; min-width: 0">
+        <span class="eyebrow">Locally owned &amp; operated</span>
+        <h2 class="h2">The owner walks your floor, not a salesperson</h2>
+        <p class="lead">CleanWave KC isn't a faceless franchise. When you book a walkthrough, you meet Justin Andrade, the person who will actually be responsible for your building. He listens first, quotes honestly, and stays reachable long after the first clean.</p>
+        <div style="display: grid; gap: 14px; margin-top: 28px">
+          <p class="li" style="margin: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A64D6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>One point of contact, from quote to clean</p>
+          <p class="li" style="margin: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A64D6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>Scheduling that respects your team's hours</p>
+          <p class="li" style="margin: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A64D6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 6 9 17l-5-5"></path></svg>Honest pricing: the walkthrough quote is the price</p>
+        </div>
+        <a class="btn btn-primary" href="#quote" style="margin-top: 32px">Meet Justin at your walkthrough</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="sec" style="background: #fff">
+  <div class="wrap">
+    <div class="rv" style="text-align: center; max-width: 680px; margin: 0 auto">
+      <span class="eyebrow">Testimonials</span>
+      <h2 class="h2">What Kansas City businesses say</h2>
+    </div>
+    <div class="grid3" style="margin-top: 48px">
+      <div class="card rv" style="background: #F5F8FC">
+        <div style="color: #E8A317; font-size: 18px; letter-spacing: 3px" aria-label="5 stars" role="img">★★★★★</div>
+        <p style="font-size: 17px; line-height: 1.6; margin: 16px 0 22px">[Client testimonial goes here]</p>
+        <p style="margin: 0; font-weight: 700">[Name]</p><p style="margin: 2px 0 0; font-size: 14px; color: #5A6B82">[Role], [Business type]</p>
+      </div>
+      <div class="card rv" style="background: #F5F8FC">
+        <div style="color: #E8A317; font-size: 18px; letter-spacing: 3px" aria-label="5 stars" role="img">★★★★★</div>
+        <p style="font-size: 17px; line-height: 1.6; margin: 16px 0 22px">[Client testimonial goes here]</p>
+        <p style="margin: 0; font-weight: 700">[Name]</p><p style="margin: 2px 0 0; font-size: 14px; color: #5A6B82">[Role], [Business type]</p>
+      </div>
+      <div class="card rv" style="background: #F5F8FC">
+        <div style="color: #E8A317; font-size: 18px; letter-spacing: 3px" aria-label="5 stars" role="img">★★★★★</div>
+        <p style="font-size: 17px; line-height: 1.6; margin: 16px 0 22px">[Client testimonial goes here]</p>
+        <p style="margin: 0; font-weight: 700">[Name]</p><p style="margin: 2px 0 0; font-size: 14px; color: #5A6B82">[Role], [Business type]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICE AREA ================= -->
+<section class="sec" style="padding-bottom: 72px">
+  <div class="wrap">
+    <div class="rv" style="text-align: center; max-width: 720px; margin: 0 auto">
+      <span class="eyebrow">Service area</span>
+      <h2 class="h2">Proudly serving the Kansas City metro</h2>
+      <p class="lead">Johnson, Wyandotte, Jackson, Clay, Platte and Cass counties. Not sure if we cover you? Just ask.</p>
+    </div>
+  </div>
+  <div class="marquee rv" style="margin-top: 40px">
+    <div class="mtrack">
+      <span class="pill">Kansas City, MO</span><span class="pill">Kansas City, KS</span><span class="pill">Overland Park</span><span class="pill">Olathe</span><span class="pill">Lenexa</span><span class="pill">Shawnee</span><span class="pill">Leawood</span><span class="pill">Lee's Summit</span><span class="pill">Independence</span><span class="pill">Blue Springs</span><span class="pill">North Kansas City</span><span class="pill">Liberty</span><span class="pill">Raytown</span><span class="pill">Gladstone</span>
+      <span class="pill" aria-hidden="true">Kansas City, MO</span><span class="pill" aria-hidden="true">Kansas City, KS</span><span class="pill" aria-hidden="true">Overland Park</span><span class="pill" aria-hidden="true">Olathe</span><span class="pill" aria-hidden="true">Lenexa</span><span class="pill" aria-hidden="true">Shawnee</span><span class="pill" aria-hidden="true">Leawood</span><span class="pill" aria-hidden="true">Lee's Summit</span><span class="pill" aria-hidden="true">Independence</span><span class="pill" aria-hidden="true">Blue Springs</span><span class="pill" aria-hidden="true">North Kansas City</span><span class="pill" aria-hidden="true">Liberty</span><span class="pill" aria-hidden="true">Raytown</span><span class="pill" aria-hidden="true">Gladstone</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" style="background: #fff">
+  <div class="wrap" style="max-width: 860px">
+    <div class="rv" style="text-align: center">
+      <span class="eyebrow">Questions</span>
+      <h2 class="h2">Before you book</h2>
+    </div>
+    <div class="rv" id="faq" style="margin-top: 40px; border-top: 1px solid #E1E8F2">
+      <div style="border-bottom: 1px solid #E1E8F2">
+        <button type="button" class="faq-q" aria-expanded="true">Is the walkthrough really free?<span class="faq-ic open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <p class="faq-a">Yes. It takes about 30 minutes, there is no obligation, and you get a written proposal with a fixed monthly price within 48 hours.</p>
+      </div>
+      <div style="border-bottom: 1px solid #E1E8F2">
+        <button type="button" class="faq-q" aria-expanded="false">Who comes to the walkthrough?<span class="faq-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <p class="faq-a" hidden>Justin Andrade, the owner. He is the person responsible for your building from quote to clean, and the person you text or call afterwards.</p>
+      </div>
+      <div style="border-bottom: 1px solid #E1E8F2">
+        <button type="button" class="faq-q" aria-expanded="false">Can you clean outside business hours?<span class="faq-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <p class="faq-a" hidden>Yes. Every plan is built around your hours, so cleaning can happen after hours, during the day or on weekends.</p>
+      </div>
+      <div style="border-bottom: 1px solid #E1E8F2">
+        <button type="button" class="faq-q" aria-expanded="false">Are you insured?<span class="faq-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <p class="faq-a" hidden>CleanWave KC is fully insured and bonded, and every cleaning team member is background-checked.</p>
+      </div>
+      <div style="border-bottom: 1px solid #E1E8F2">
+        <button type="button" class="faq-q" aria-expanded="false">What if something gets missed?<span class="faq-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <p class="faq-a" hidden>Tell Justin directly. Issues are answered within one business day and fixed on the next visit or sooner.</p>
+      </div>
+      <div style="border-bottom: 1px solid #E1E8F2">
+        <button type="button" class="faq-q" aria-expanded="false">Do you clean homes?<span class="faq-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <p class="faq-a" hidden>No. CleanWave KC serves commercial facilities only: offices, medical and dental, retail, property, industrial, schools, churches and daycares.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section style="position: relative; background: #0B1F3A; color: #fff; padding: 140px 0 110px; overflow: hidden">
+  <div class="waves" style="top: -1px; bottom: auto; transform: scaleY(-1)" aria-hidden="true">
+    <svg class="wave" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 55 C 480 15, 960 95, 1440 55 C 1920 15, 2400 95, 2880 55 V100 H0Z" fill="#fff"></path></svg>
+  </div>
+  <div class="bubble" style="width: 200px; height: 200px; left: 4%; bottom: -60px" aria-hidden="true"></div>
+  <div class="bubble" style="width: 90px; height: 90px; right: 12%; top: 130px; animation-delay: 1.5s; animation-duration: 7s" aria-hidden="true"></div>
+  <div class="wrap rv" style="position: relative; text-align: center; max-width: 760px">
+    <h2 class="h2" style="color: #fff">Ready for a space that shines?</h2>
+    <p style="font-size: 19px; line-height: 1.6; color: #C6D3E6; margin: 18px 0 0">Book a free 30-minute walkthrough. We'll tour your space, learn what you need, and send you a custom quote. No obligation.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 36px">
+      <a class="btn btn-primary" href="#quote">Book My Free Walkthrough</a>
+      <a class="btn btn-ghost" href="tel:+18160000000">Call (816) 000-0000</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background: #071629; color: #93A4BC; padding: 36px 0; font-size: 14px">
+  <div class="wrap" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
+    <span>© 2026 CleanWave KC · Olathe, Kansas · hello@cleanwavekc.com</span>
+    <span><a href="https://cleanwave-kc.vercel.app/privacy-policy" style="color: #C6D3E6">Privacy Policy</a> · <a href="https://cleanwave-kc.vercel.app/terms" style="color: #C6D3E6">Terms of Service</a></span>
+  </div>
+</footer>
+
+</div>
+
+<script src="funnel.js"></script>
+</body>
+</html>
