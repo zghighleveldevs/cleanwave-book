@@ -194,7 +194,9 @@ a{color:var(--accent)}
       var h = Math.max(base(), reported + 40);
       var grew = current && h > current + 40;
       current = h;
-      f.style.height = h + 'px';
+      // Only override the CSS height when the content is taller than it, so rotating /
+      // resizing the screen still falls back to the right CSS size.
+      f.style.height = reported + 40 > base() ? h + 'px' : '';
       if (!grew) return;
       setTimeout(function () {
         var r = f.getBoundingClientRect();
