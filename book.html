@@ -46,8 +46,10 @@ a{color:var(--accent)}
 .cal-card{padding:0;overflow:hidden}
 .cal-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:24px 30px;border-bottom:1px solid var(--line)}
 @media (max-width:640px){.cal-head{padding:18px 16px}}
-.cal-body{position:relative;min-height:720px}
-.cal-body iframe{display:block;width:100%;min-height:720px;border:0;overflow:hidden;position:relative;z-index:1}
+.cal-body{position:relative}
+/* Fits GHL's tallest step (booking form + Schedule button): ~920px desktop, ~1170px phone */
+.cal-body iframe{display:block;width:100%;height:960px;border:0;position:relative;z-index:1}
+@media (max-width:700px){.cal-body iframe{height:1220px}}
 .loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#5A6B82;font-size:15px;z-index:0}
 .spin{width:44px;height:44px;border-radius:50%;border:4px solid #E1E8F2;border-top-color:var(--accent);animation:spin .9s linear infinite}
 .cal-foot{padding:18px 30px;border-top:1px solid var(--line);text-align:center;font-size:14px;color:#5A6B82;background:#FAFCFE}
@@ -147,7 +149,7 @@ a{color:var(--accent)}
         <div class="cal-body">
           <div class="loader" aria-hidden="true"><div class="spin"></div>Loading Justin's calendar…</div>
           <!-- GoHighLevel booking calendar: Facility Walkthrough -->
-          <iframe src="https://api.leadconnectorhq.com/widget/booking/O9wIKMDIUpyQUv16Jgum" scrolling="no" id="O9wIKMDIUpyQUv16Jgum_1793714400" title="Book your CleanWave KC walkthrough"></iframe>
+          <iframe src="https://api.leadconnectorhq.com/widget/booking/O9wIKMDIUpyQUv16Jgum" scrolling="auto" id="O9wIKMDIUpyQUv16Jgum_1793714400" title="Book your CleanWave KC walkthrough"></iframe>
           <script src="https://link.msgsreceived.com/js/form_embed.js" type="text/javascript"></script>
         </div>
         <div class="cal-foot">None of these times work? <a href="tel:+18160000000">Call or text Justin</a> or <a href="https://api.leadconnectorhq.com/widget/booking/O9wIKMDIUpyQUv16Jgum" target="_blank" rel="noopener">open the calendar in a new tab</a>.</div>
@@ -170,6 +172,36 @@ a{color:var(--accent)}
     if (!qs) return;
     var f = document.getElementById('O9wIKMDIUpyQUv16Jgum_1793714400');
     if (f) f.src = f.src.split('?')[0] + qs;
+  })();
+
+  // Keep the calendar tall enough for its current step, and when it grows (e.g. the booking
+  // form opens after picking a time) scroll so the Schedule button is in view.
+  // GHL posts ["highlevel.setHeight", {height: N}]; form_embed.js doesn't apply it on this page,
+  // and the reported value can be lower than the real content, so it only ever raises the CSS height.
+  (function () {
+    var f = document.getElementById('O9wIKMDIUpyQUv16Jgum_1793714400');
+    if (!f) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function base() { return f.parentNode.clientWidth >= 700 ? 960 : 1220; }
+    var current = 0;
+    window.addEventListener('message', function (e) {
+      if (!/leadconnectorhq\.com|msgsndr\.com|msgsreceived\.com/.test(e.origin || '')) return;
+      var d = e.data;
+      if (typeof d === 'string') { try { d = JSON.parse(d); } catch (err) { return; } }
+      if (!Array.isArray(d) || d[0] !== 'highlevel.setHeight' || !d[1]) return;
+      var reported = parseInt(d[1].height, 10);
+      if (!reported) return;
+      var h = Math.max(base(), reported + 40);
+      var grew = current && h > current + 40;
+      current = h;
+      f.style.height = h + 'px';
+      if (!grew) return;
+      setTimeout(function () {
+        var r = f.getBoundingClientRect();
+        var target = window.scrollY + r.bottom - window.innerHeight + 24;
+        if (target > window.scrollY) window.scrollTo({ top: target, behavior: reduce ? 'auto' : 'smooth' });
+      }, 120);
+    });
   })();
 </script>
 </body>
