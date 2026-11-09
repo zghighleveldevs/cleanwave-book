@@ -266,3 +266,33 @@ var BOOKING_PAGE = 'book.html';
   if (window.innerWidth > 760) restart();
   else cards.forEach(function (c) { c.removeAttribute('aria-hidden'); });
 })();
+
+// Industries: glass cards flip in on scroll, tilt in 3D toward the cursor, light follows the mouse
+(function () {
+  var cards = document.querySelectorAll('.gcard');
+  if (!cards.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) { cards.forEach(function (c) { c.classList.add('in'); c.style.opacity = 1; }); }
+  else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.2 });
+    cards.forEach(function (c) { io.observe(c); });
+  }
+  if (reduce || !window.matchMedia('(pointer: fine)').matches) return;
+  cards.forEach(function (c) {
+    var raf;
+    c.addEventListener('mousemove', function (e) {
+      var r = c.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        c.style.animation = 'none'; c.style.opacity = 1;
+        c.style.transform = 'rotateY(' + ((x - 0.5) * 14).toFixed(2) + 'deg) rotateX(' + ((0.5 - y) * 12).toFixed(2) + 'deg) translateZ(10px)';
+        c.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        c.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+    });
+    c.addEventListener('mouseleave', function () { cancelAnimationFrame(raf); c.style.transform = 'none'; });
+  });
+})();
