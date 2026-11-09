@@ -4,7 +4,7 @@
  * so every submission (with all quiz answers + UTM params) creates/updates the contact in GHL.
  * Leave it empty and the form simply forwards the visitor to the booking calendar.
  */
-var GHL_WEBHOOK_URL = '';
+var GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/JgqazA9K8zxUtR2rZezR/webhook-trigger/d50bf8da-8275-4fed-9d60-32f199e4148f';
 var BOOKING_PAGE = 'book.html';
 
 (function () {
@@ -146,7 +146,7 @@ var BOOKING_PAGE = 'book.html';
 
     if (!GHL_WEBHOOK_URL) { window.location.href = next; return; }
     fetch(GHL_WEBHOOK_URL, {
-      method: 'POST', mode: 'no-cors', keepalive: true,
+      method: 'POST', keepalive: true,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).catch(function () {}).then(function () { window.location.href = next; });
