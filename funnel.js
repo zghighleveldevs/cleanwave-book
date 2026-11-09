@@ -214,3 +214,55 @@ var BOOKING_PAGE = 'book.html';
   }, { threshold: 0.12 });
   els.forEach(function (el) { io.observe(el); });
 })();
+
+// 3D review carousel: rotating ring of Google reviews (desktop); swipeable row on phones
+(function () {
+  var ring = document.getElementById('ring');
+  if (!ring) return;
+  var cards = ring.querySelectorAll('.rcard');
+  var n = cards.length, step = 360 / n, idx = 0, timer;
+  var dotsWrap = document.getElementById('ring-dots');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dots = [];
+  for (var i = 0; i < n; i++) {
+    (function (k) {
+      var d = document.createElement('button');
+      d.type = 'button'; d.className = 'ring-dot';
+      d.setAttribute('aria-label', 'Show review ' + (k + 1) + ' of ' + n);
+      d.addEventListener('click', function () { show(k); restart(); });
+      dotsWrap.appendChild(d); dots.push(d);
+    })(i);
+  }
+  var turns = 0; // keep rotating in one direction without unwinding
+  function show(k) {
+    var prev = idx;
+    idx = (k + n) % n;
+    var delta = idx - prev;
+    if (delta > n / 2) delta -= n;
+    if (delta < -n / 2) delta += n;
+    turns += delta;
+    ring.style.setProperty('--rot', (-turns * step) + 'deg');
+    cards.forEach(function (c, j) { c.classList.toggle('is-front', j === idx); c.setAttribute('aria-hidden', j === idx ? 'false' : 'true'); });
+    dots.forEach(function (d, j) { d.classList.toggle('on', j === idx); });
+  }
+  function restart() {
+    clearInterval(timer);
+    if (!reduce) timer = setInterval(function () { show(idx + 1); }, 4500);
+  }
+  document.getElementById('ring-prev').addEventListener('click', function () { show(idx - 1); restart(); });
+  document.getElementById('ring-next').addEventListener('click', function () { show(idx + 1); restart(); });
+  var stage = document.getElementById('ring-stage');
+  stage.addEventListener('mouseenter', function () { clearInterval(timer); });
+  stage.addEventListener('mouseleave', restart);
+  // swipe on touch devices with the 3D ring
+  var sx = null;
+  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 40 && window.innerWidth > 760) { show(idx + (dx < 0 ? 1 : -1)); restart(); }
+  });
+  show(0);
+  if (window.innerWidth > 760) restart();
+  else cards.forEach(function (c) { c.removeAttribute('aria-hidden'); });
+})();

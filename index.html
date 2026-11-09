@@ -120,6 +120,65 @@ a{color:#1A64D6}a:hover{color:#0F4AA8}
 .inp-lg{min-height:58px;padding-left:46px;font-size:20px;font-weight:700;letter-spacing:.08em}
 .q-contact{display:grid;gap:14px}
 @media (max-width:520px){.q-cards{grid-template-columns:1fr !important}.q-tip{display:none}}
+
+/* ---- Google reviews ---- */
+.hero-rating{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:10px 16px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#C6D3E6;text-decoration:none;font-size:15px;min-height:44px;transition:background .2s,transform .2s}
+.hero-rating:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateY(-2px)}
+.hero-rating strong{color:#fff}
+.hr-stars{display:inline-flex;gap:1px}
+.rev-sec{position:relative;overflow:hidden;background:radial-gradient(90% 70% at 85% 0%,#163B78 0%,#0B1F3A 55%,#081830 100%);color:#fff;padding:110px 0 100px}
+@media (max-width:640px){.rev-sec{padding:72px 0 64px}}
+.rev-head{display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between}
+.g-chip{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.04em;color:#4A5B73;background:#EEF2F8;border-radius:99px;padding:4px 9px}
+
+/* 3D spinning rating coin */
+.coin-stage{position:relative;flex:none;width:230px;height:250px;perspective:900px;margin:0 auto}
+.coin{position:absolute;left:15px;top:0;width:200px;height:200px;transform-style:preserve-3d;animation:coinSpin 9s cubic-bezier(.45,0,.55,1) infinite}
+.coin-face{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;backface-visibility:hidden;background:radial-gradient(circle at 32% 28%,#FFF6CC 0%,#FFD45C 30%,#F5B301 62%,#C98A00 100%);box-shadow:inset 0 0 0 8px rgba(255,255,255,.35),inset 0 -14px 26px rgba(120,70,0,.45),inset 0 10px 18px rgba(255,255,255,.55)}
+.coin-front{transform:translateZ(4px)}
+.coin-back{transform:rotateY(180deg) translateZ(4px)}
+.coin-edge{position:absolute;inset:3px;border-radius:50%;background:#A87200}
+.coin-score{font-family:Sora,sans-serif;font-weight:800;font-size:58px;line-height:1;color:#5A3A00;text-shadow:0 2px 0 rgba(255,255,255,.55)}
+.coin-stars{display:flex;gap:2px}
+.coin-stars svg path{fill:#7A4E00}
+.coin-lbl{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6B4500}
+.coin-shadow{position:absolute;left:50%;bottom:0;width:150px;height:22px;margin-left:-75px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);animation:coinShadow 9s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes coinSpin{0%{transform:translateY(0) rotateY(0deg) rotateX(8deg)}25%{transform:translateY(-14px) rotateY(180deg) rotateX(-6deg)}50%{transform:translateY(0) rotateY(180deg) rotateX(8deg)}75%{transform:translateY(-14px) rotateY(360deg) rotateX(-6deg)}100%{transform:translateY(0) rotateY(360deg) rotateX(8deg)}}
+@keyframes coinShadow{0%,50%,100%{transform:scale(1);opacity:1}25%,75%{transform:scale(.8);opacity:.6}}
+
+/* 3D review carousel ring */
+.ring-wrap{margin-top:60px}
+.ring-stage{position:relative;height:370px;perspective:1700px;perspective-origin:50% 30%}
+.ring{position:absolute;left:50%;top:20px;width:340px;height:310px;margin-left:-170px;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.3,.7,.2,1);transform:translateZ(-430px) rotateY(var(--rot,0deg))}
+.rcard{position:absolute;inset:0;box-sizing:border-box;background:#fff;color:#0B1F3A;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;transform:rotateY(calc(var(--i) * 45deg)) translateZ(430px);backface-visibility:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);transition:opacity .6s,filter .6s;opacity:.35;filter:saturate(.5) brightness(.85)}
+.rcard.is-front{opacity:1;filter:none;box-shadow:0 40px 80px -30px rgba(0,0,0,.75),0 0 0 2px rgba(92,198,255,.6)}
+.rcard-top{display:flex;align-items:center;gap:12px}
+.ravatar{flex:none;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px}
+.ravatar.sm{width:28px;height:28px;font-size:13px}
+.rname{margin:0;font-weight:700;font-size:16px}
+.rwhen{margin:2px 0 0;font-size:13px;color:#5A6B82}
+.rstars{display:flex;gap:2px}
+.rtext{margin:0;font-size:15.5px;line-height:1.6;color:#33465F;overflow:auto}
+.ring-ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:8px}
+.ring-btn{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s}
+.ring-btn:hover{background:rgba(255,255,255,.16);transform:scale(1.06)}
+.ring-dots{display:flex;gap:8px}
+.ring-dot{width:10px;height:10px;padding:0;border-radius:99px;border:0;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s;position:relative}
+.ring-dot::before{content:"";position:absolute;inset:-17px -4px}
+.ring-dot.on{width:28px;background:#5CC6FF}
+@media (max-width:760px){
+  .ring-stage{height:auto;perspective:none}
+  .ring{position:relative;left:auto;top:auto;width:auto;height:auto;margin:0;transform:none !important;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 16px 18px;margin:0 -16px;-webkit-overflow-scrolling:touch}
+  .rcard{position:relative;inset:auto;flex:0 0 84%;min-height:300px;transform:none;opacity:1;filter:none;scroll-snap-align:center}
+  .ring-ctrl{display:none}
+}
+
+/* review marquee */
+.mq-track{gap:16px;animation-duration:46s}
+.mq-card{margin:0;width:330px;flex:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;color:#fff}
+.mq-card blockquote{margin:0;font-size:15px;line-height:1.55;color:#DCE6F5;white-space:normal}
+.mq-card figcaption{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#fff}
+@media (prefers-reduced-motion: reduce){.coin,.coin-shadow{animation:none}.ring{transition:none}}
 /* 3D scene around the card */
 .scene{position:absolute;inset:0;pointer-events:none;z-index:2;transition:transform .4s ease-out}
 .bub3d{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0 7%,rgba(255,255,255,.75) 10%,rgba(191,243,236,.35) 32%,rgba(76,141,240,.22) 62%,rgba(255,255,255,.55) 92%,rgba(255,255,255,.85) 100%);box-shadow:inset -8px -12px 22px rgba(26,100,214,.35),inset 6px 6px 14px rgba(255,255,255,.55),0 18px 30px -18px rgba(0,0,0,.5);animation:bubble 7s ease-in-out infinite;backdrop-filter:blur(1px)}
@@ -267,6 +326,10 @@ button:disabled{opacity:.7;cursor:wait}
           <img src="img/justin.jpg" alt="Justin Andrade" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid #5CC6FF; flex: none">
           <div style="font-size: 15px; line-height: 1.5; color: #C6D3E6"><strong style="color: #fff">Justin Andrade, Owner</strong><br>Locally owned &amp; operated in Olathe, KS</div>
         </div>
+        <a class="hero-rating fu d6" href="#reviews">
+          <span class="hr-stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
+          <span><strong>5.0</strong> from 14 Google reviews</span>
+        </a>
       </div>
 
       <!-- ===== QUOTE FORM ===== -->
@@ -644,30 +707,124 @@ button:disabled{opacity:.7;cursor:wait}
   </div>
 </section>
 
-<!-- ================= TESTIMONIALS ================= -->
-<section class="sec" style="background: #fff">
-  <div class="wrap">
-    <div class="rv" style="text-align: center; max-width: 680px; margin: 0 auto">
-      <span class="eyebrow">Testimonials</span>
-      <h2 class="h2">What Kansas City businesses say</h2>
+<!-- ================= GOOGLE REVIEWS ================= -->
+<section class="rev-sec" id="reviews">
+  <div class="bubble" style="width: 220px; height: 220px; left: -70px; top: 60px" aria-hidden="true"></div>
+  <div class="bubble" style="width: 120px; height: 120px; right: 8%; bottom: 80px; animation-delay: 2s" aria-hidden="true"></div>
+  <div class="wrap" style="position: relative">
+    <div class="rev-head">
+      <div class="rv" style="flex: 1 1 420px; min-width: 0">
+        <span class="eyebrow" style="color: #5CC6FF">Google reviews</span>
+        <h2 class="h2" style="color: #fff">Kansas City businesses love working with Justin's team</h2>
+        <p class="lead" style="color: #C6D3E6">Every review on our Google profile is five stars. Here's what clients say, in their own words.</p>
+        <a class="btn btn-ghost" href="https://www.google.com/search?q=CleanWave+KC+reviews" target="_blank" rel="noopener" style="margin-top: 26px">See all 14 reviews on Google
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <div class="coin-stage rv" aria-label="Rated 5.0 out of 5 from 14 Google reviews" role="img">
+        <div class="coin">
+          <div class="coin-face coin-front">
+            <span class="coin-score">5.0</span>
+            <span class="coin-stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
+            <span class="coin-lbl">Google rating</span>
+          </div>
+          <div class="coin-face coin-back">
+            <span class="coin-score">14</span>
+            <span class="coin-stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span>
+            <span class="coin-lbl">five-star reviews</span>
+          </div>
+          <div class="coin-edge"></div>
+        </div>
+        <div class="coin-shadow"></div>
+      </div>
     </div>
-    <div class="grid3" style="margin-top: 48px">
-      <div class="card rv" style="background: #F5F8FC">
-        <div style="color: #E8A317; font-size: 18px; letter-spacing: 3px" aria-label="5 stars" role="img">★★★★★</div>
-        <p style="font-size: 17px; line-height: 1.6; margin: 16px 0 22px">[Client testimonial goes here]</p>
-        <p style="margin: 0; font-weight: 700">[Name]</p><p style="margin: 2px 0 0; font-size: 14px; color: #5A6B82">[Role], [Business type]</p>
+
+    <div class="ring-wrap rv">
+      <div class="ring-stage" id="ring-stage">
+        <div class="ring" id="ring" aria-live="polite">
+        <article class="rcard" style="--i:0">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#1A64D6">J</span>
+            <div><p class="rname">Josh R</p><p class="rwhen">7 months ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">CleanWave took great care of my business. Their team was really able to paint the picture of how they would service my business and have followed through greatly every time.</p>
+        </article>
+        <article class="rcard" style="--i:1">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#12A594">B</span>
+            <div><p class="rname">Brandy Norris</p><p class="rwhen">a year ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">Always goes above and beyond! I fully trust the staff with their ability to make sure our clinic is red carpet ready for our guests. They never miss the details with their cleaning. Highly recommend</p>
+        </article>
+        <article class="rcard" style="--i:2">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#7C4DDB">M</span>
+            <div><p class="rname">Mike Arend</p><p class="rwhen">5 months ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">I’ve used these guys for post construction work cleans time and time again. They aren’t afraid to do what it takes to get the job done right. Very pleased with their work time and time again. Thanks guys!</p>
+        </article>
+        <article class="rcard" style="--i:3">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#E2683C">T</span>
+            <div><p class="rname">Tyler Hatcher</p><p class="rwhen">a year ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">I’ve been extremely impressed with the attention to detail that Cleanwave KC provides. They’ve done an outstanding job with our new clubhouse. It’s a great space for hosting clients, and it’s always in top-notch condition. …</p>
+        </article>
+        <article class="rcard" style="--i:4">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#0F766E">E</span>
+            <div><p class="rname">Erhan Guven</p><p class="rwhen">a year ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">Cleanwave is by far the BEST cleaning company I have worked with!! Pricing was super fair, the crew was amazingly professional, respectful and thorough! The owner Justin is very well spoken and understanding gentleman …</p>
+        </article>
+        <article class="rcard" style="--i:5">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#C2410C">D</span>
+            <div><p class="rname">Dustin Bray</p><p class="rwhen">a year ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">If you’re looking for a professional and reliable cleaning service, that prioritizes customer service and satisfaction, then I can’t recommend CleanWave KC enough! They are amazing to work with, and do fantastic work!</p>
+        </article>
+        <article class="rcard" style="--i:6">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#2F6FE0">L</span>
+            <div><p class="rname">Latyce Taylor</p><p class="rwhen">4 months ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">Excellent company to work with, positive attitude, great work ethic, any questions needing help with, always answers and gives constructive feedback. Would highly recommend for cleanings and for working!</p>
+        </article>
+        <article class="rcard" style="--i:7">
+          <div class="rcard-top">
+            <span class="ravatar" style="background:#B42318">K</span>
+            <div><p class="rname">Keefer Tully</p><p class="rwhen">a year ago</p></div>
+            <span class="g-chip">Google</span>
+          </div>
+          <div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div>
+          <p class="rtext">I had the pleasure of working with Justin and his team at Cleanwave KC! He and his team are top notch to work with and I would recommend them to anyone!</p>
+        </article>
+        </div>
       </div>
-      <div class="card rv" style="background: #F5F8FC">
-        <div style="color: #E8A317; font-size: 18px; letter-spacing: 3px" aria-label="5 stars" role="img">★★★★★</div>
-        <p style="font-size: 17px; line-height: 1.6; margin: 16px 0 22px">[Client testimonial goes here]</p>
-        <p style="margin: 0; font-weight: 700">[Name]</p><p style="margin: 2px 0 0; font-size: 14px; color: #5A6B82">[Role], [Business type]</p>
-      </div>
-      <div class="card rv" style="background: #F5F8FC">
-        <div style="color: #E8A317; font-size: 18px; letter-spacing: 3px" aria-label="5 stars" role="img">★★★★★</div>
-        <p style="font-size: 17px; line-height: 1.6; margin: 16px 0 22px">[Client testimonial goes here]</p>
-        <p style="margin: 0; font-weight: 700">[Name]</p><p style="margin: 2px 0 0; font-size: 14px; color: #5A6B82">[Role], [Business type]</p>
+      <div class="ring-ctrl">
+        <button type="button" class="ring-btn" id="ring-prev" aria-label="Previous review"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="ring-dots" id="ring-dots"></div>
+        <button type="button" class="ring-btn" id="ring-next" aria-label="Next review"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
     </div>
+  </div>
+
+  <div class="marquee mq-rev rv" style="margin-top: 56px">
+    <div class="mtrack mq-track"><figure class="mq-card"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Justin if I could give you more than 5 stars, I would. You guys rock. Dedicated hardworking team like I’ve never seen before</blockquote><figcaption><span class="ravatar sm" style="background:#0B7A5C">L</span>Leary Ellis</figcaption></figure><figure class="mq-card"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>CleanWave a 5+ service company! 100% recommend them!</blockquote><figcaption><span class="ravatar sm" style="background:#5B3FD1">I</span>Ion Mazzi</figcaption></figure><figure class="mq-card"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Very professional and efficient with their services. 10/10!</blockquote><figcaption><span class="ravatar sm" style="background:#B54708">T</span>Tanner Cox</figcaption></figure><figure class="mq-card"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Justin and his team are very friendly, and very professional. You wouldn’t regret it!!! Keep up the good work. Highly recommend!</blockquote><figcaption><span class="ravatar sm" style="background:#1D4ED8">B</span>Blanca Mendez</figcaption></figure><figure class="mq-card"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Very friendly, professional, quick to reply, and very hard workers.</blockquote><figcaption><span class="ravatar sm" style="background:#047857">J</span>Jasline Carrillo</figcaption></figure><figure class="mq-card" aria-hidden="true"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Justin if I could give you more than 5 stars, I would. You guys rock. Dedicated hardworking team like I’ve never seen before</blockquote><figcaption><span class="ravatar sm" style="background:#0B7A5C">L</span>Leary Ellis</figcaption></figure><figure class="mq-card" aria-hidden="true"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>CleanWave a 5+ service company! 100% recommend them!</blockquote><figcaption><span class="ravatar sm" style="background:#5B3FD1">I</span>Ion Mazzi</figcaption></figure><figure class="mq-card" aria-hidden="true"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Very professional and efficient with their services. 10/10!</blockquote><figcaption><span class="ravatar sm" style="background:#B54708">T</span>Tanner Cox</figcaption></figure><figure class="mq-card" aria-hidden="true"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Justin and his team are very friendly, and very professional. You wouldn’t regret it!!! Keep up the good work. Highly recommend!</blockquote><figcaption><span class="ravatar sm" style="background:#1D4ED8">B</span>Blanca Mendez</figcaption></figure><figure class="mq-card" aria-hidden="true"><div class="rstars" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F5B301" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></div><blockquote>Very friendly, professional, quick to reply, and very hard workers.</blockquote><figcaption><span class="ravatar sm" style="background:#047857">J</span>Jasline Carrillo</figcaption></figure></div>
   </div>
 </section>
 
