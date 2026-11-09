@@ -26,7 +26,7 @@ var BOOKING_PAGE = 'book.html';
     var progress = document.getElementById('qf-progress');
     progress.hidden = current === 'res';
     if (current === 'res') return;
-    document.getElementById('qf-steplabel').textContent = 'Question ' + n + ' of ' + TOTAL;
+    document.getElementById('qf-steplabel').textContent = 'Step ' + n + ' of ' + TOTAL;
     var pct = Math.round(((n - 1) / TOTAL) * 100);
     document.getElementById('qf-pct').textContent = pct + '% done';
     document.getElementById('qf-bar').style.width = Math.max(6, ((n - 0.5) / TOTAL) * 100) + '%';
@@ -53,7 +53,7 @@ var BOOKING_PAGE = 'book.html';
 
   function next() {
     var n = parseInt(current, 10);
-    if (current === '1' && answers.facility === 'Residential home') return go('res');
+    if (current === '2' && answers.facility === 'Residential home') return go('res');
     if (n < TOTAL) go(n + 1);
   }
 
@@ -87,25 +87,27 @@ var BOOKING_PAGE = 'book.html';
     b.addEventListener('click', function () {
       delete answers.facility;
       form.querySelectorAll('[data-group="facility"] button').forEach(function (x) { x.classList.remove('tile-on'); x.setAttribute('aria-pressed', 'false'); });
-      history = [];
-      go(1, true);
+      history = ['1'];
+      go(2, true);
     });
   });
 
-  // ZIP question
-  function zipNext() {
-    var zip = form.postal_code.value.trim();
-    if (!/^\d{5}$/.test(zip)) { form.postal_code.focus(); return showErr('Enter your 5-digit ZIP code.'); }
-    answers.postal_code = zip;
-    next();
+  // Step 1: contact details first
+  function contactNext() {
+    var f = form;
+    var missing = ['first_name', 'last_name', 'company_name', 'email', 'phone'].filter(function (n) { return !f[n].value.trim(); });
+    if (missing.length) { f[missing[0]].focus(); return showErr('Please fill in all the fields so Justin can reach you.'); }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())) { f.email.focus(); return showErr('Enter a valid email address.'); }
+    if (f.phone.value.replace(/\D/g, '').length < 10) { f.phone.focus(); return showErr('Enter a 10-digit phone number.'); }
+    go(2);
   }
-  form.querySelectorAll('[data-next]').forEach(function (b) { b.addEventListener('click', zipNext); });
+  form.querySelectorAll('[data-contact-next]').forEach(function (b) { b.addEventListener('click', contactNext); });
+  stepEl('1').querySelectorAll('input').forEach(function (inp) { inp.addEventListener('input', hideErr); });
+
+  // Final step: ZIP (submits the form)
   form.postal_code.addEventListener('input', function () {
     this.value = this.value.replace(/\D/g, '').slice(0, 5);
     hideErr();
-  });
-  form.postal_code.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); zipNext(); }
   });
 
   setProgress();
@@ -113,10 +115,10 @@ var BOOKING_PAGE = 'book.html';
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var f = form;
-    var missing = ['first_name', 'last_name', 'company_name', 'email', 'phone'].filter(function (n) { return !f[n].value.trim(); });
-    if (missing.length) { f[missing[0]].focus(); return showErr('Please fill in all the fields so Justin can reach you.'); }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())) { f.email.focus(); return showErr('Enter a valid email address.'); }
-    if (f.phone.value.replace(/\D/g, '').length < 10) { f.phone.focus(); return showErr('Enter a 10-digit phone number.'); }
+    if (current === '1') return contactNext();   // Enter pressed on the contact step
+    if (current !== '7') return;
+    var zip = f.postal_code.value.trim();
+    if (!/^\d{5}$/.test(zip)) { f.postal_code.focus(); return showErr('Enter your 5-digit ZIP code.'); }
 
     var data = {
       first_name: f.first_name.value.trim(),
