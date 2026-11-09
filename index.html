@@ -102,6 +102,24 @@ a{color:#1A64D6}a:hover{color:#0F4AA8}
 .chip-on .radio{border-color:var(--accent);box-shadow:inset 0 0 0 4px #fff;background:var(--accent)}
 
 @media (max-width:520px){.tile{flex-direction:row;align-items:center;min-height:62px;padding:10px 30px 10px 10px;gap:10px;font-size:13.5px}.tile-ic{width:34px;height:34px;flex:none}.tick{top:50%;margin-top:-10px;right:8px}.sp-t{font-size:12px;white-space:nowrap}.sp:not(.sp-on) .sp-t{display:none}.stepper{grid-template-columns:auto auto auto;justify-content:space-between}}
+
+/* one question per screen */
+.q{margin-top:20px;display:grid;gap:18px}
+.q-title{font-size:21px !important;line-height:1.25;margin:0}
+.q-hint{margin:6px 0 0;font-size:14px;color:#5A6B82}
+.q-count{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;font-size:13px;font-weight:700;color:#33465F}
+.q-count #qf-pct{font-weight:600;color:#5A6B82}
+.q-cards{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+.q-cards .chip-card{min-height:64px}
+.q-cards-2 .chip-card{min-height:84px}
+.q-nav{display:flex;align-items:center;gap:10px}
+.q-back{min-height:48px;padding:0 16px;gap:6px;font-size:14px}
+.q-tip{margin-left:auto;font-size:13px;color:#7A8AA0}
+.q-zip{position:relative;max-width:280px}
+.q-zip svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--accent)}
+.inp-lg{min-height:58px;padding-left:46px;font-size:20px;font-weight:700;letter-spacing:.08em}
+.q-contact{display:grid;gap:14px}
+@media (max-width:520px){.q-cards{grid-template-columns:1fr !important}.q-tip{display:none}}
 /* 3D scene around the card */
 .scene{position:absolute;inset:0;pointer-events:none;z-index:2}
 .bub3d{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0 7%,rgba(255,255,255,.75) 10%,rgba(191,243,236,.35) 32%,rgba(76,141,240,.22) 62%,rgba(255,255,255,.55) 92%,rgba(255,255,255,.85) 100%);box-shadow:inset -8px -12px 22px rgba(26,100,214,.35),inset 6px 6px 14px rgba(255,255,255,.55),0 18px 30px -18px rgba(0,0,0,.5);animation:bubble 7s ease-in-out infinite;backdrop-filter:blur(1px)}
@@ -312,20 +330,18 @@ button:disabled{opacity:.7;cursor:wait}
           </div>
           <form id="qf" class="cf-body" novalidate>
             <div id="qf-progress">
-              <ol class="stepper" aria-label="Form progress">
-                <li class="sp sp-on"><span class="sp-n">1</span><span class="sp-t">Facility</span></li>
-                <li class="sp"><span class="sp-n">2</span><span class="sp-t">Your space</span></li>
-                <li class="sp"><span class="sp-n">3</span><span class="sp-t">Contact</span></li>
-              </ol>
-              <div class="track"><div class="bar" id="qf-bar" style="width: 33.4%"></div></div>
-              <span id="qf-steplabel" class="sr-only" aria-live="polite">Step 1 of 3</span>
+              <div class="q-count"><span id="qf-steplabel" aria-live="polite">Question 1 of 7</span><span id="qf-pct">0% done</span></div>
+              <div class="track"><div class="bar" id="qf-bar" style="width: 6%"></div></div>
+              
             </div>
 
-            <!-- STEP 1 -->
-            <div class="stepin" data-step="1" style="margin-top: 22px; display: grid; gap: 22px">
+            <!-- Q1 -->
+            <div class="stepin q" data-step="1">
               <div>
-                <span class="lbl" id="g-facility">What type of facility?</span>
-                <div class="tiles" data-group="facility" role="group" aria-labelledby="g-facility">
+                <h3 class="q-title" id="q-facility">What type of facility needs cleaning?</h3>
+                <p class="q-hint">Choose the one that fits best.</p>
+              </div>
+                <div class="tiles" data-group="facility" role="group" aria-labelledby="q-facility">
                   <button type="button" class="tile" data-v="Office"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M11 21v-3h2v3"/></svg></span><span class="tile-t">Office</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
                   <button type="button" class="tile" data-v="Medical / Dental"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg></span><span class="tile-t">Medical /&#8203; Dental</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
                   <button type="button" class="tile" data-v="Retail"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="tile-t">Retail</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
@@ -336,23 +352,12 @@ button:disabled{opacity:.7;cursor:wait}
                   <button type="button" class="tile" data-v="Other commercial"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span class="tile-t">Other commercial</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
                   <button type="button" class="tile tile-res" data-v="Residential home"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg></span><span class="tile-t">Residential home</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
                 </div>
-              </div>
-              <div>
-                <span class="lbl" id="g-freq">How often do you need cleaning?</span>
-                <div class="chips chips-cards" data-group="frequency" role="group" aria-labelledby="g-freq">
-                  <button type="button" class="chip chip-card" data-v="1x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">1x per week</span><span class="chip-s">Light use</span></span></button>
-                  <button type="button" class="chip chip-card" data-v="2–3x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">2–3x per week</span><span class="chip-s">Most offices</span></span></button>
-                  <button type="button" class="chip chip-card" data-v="5x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">5x per week</span><span class="chip-s">Every weekday</span></span></button>
-                  <button type="button" class="chip chip-card" data-v="Daily"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Daily</span><span class="chip-s">High traffic</span></span></button>
-                  <button type="button" class="chip chip-card" data-v="One-time / not sure"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">One-time / not sure</span><span class="chip-s">Let's talk</span></span></button>
-                </div>
-              </div>
               <p class="err" role="alert" hidden></p>
-              <button type="button" class="btn btn-primary btn-block" data-next="1">Continue
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
-              <p class="cf-trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>No obligation · Your details stay with CleanWave KC</p>
+              <div class="q-nav">
+                
+                <span class="q-tip">Pick one to continue</span>
+              </div>
             </div>
-
             <!-- RESIDENTIAL -->
             <div class="stepin" data-step="res" hidden style="margin-top: 22px; display: grid; gap: 16px; text-align: center; padding: 12px 0">
               <div class="pop" style="width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; background: #FFF4E5; color: #B54708; display: flex; align-items: center; justify-content: center">
@@ -363,52 +368,103 @@ button:disabled{opacity:.7;cursor:wait}
               <button type="button" class="btn btn-light btn-block" data-go="1" data-reset-res>Choose a different facility type</button>
             </div>
 
-            <!-- STEP 2 -->
-            <div class="stepin" data-step="2" hidden style="margin-top: 22px; display: grid; gap: 20px">
-              <h3 class="cf-sub">Tell us about your space</h3>
+            <!-- Q2 -->
+            <div class="stepin q" data-step="2" hidden>
               <div>
-                <span class="lbl" id="g-size">Approx. square footage</span>
-                <div class="chips" data-group="square_footage" role="group" aria-labelledby="g-size">
-                  <button type="button" class="chip">Under 2,500</button>
-                  <button type="button" class="chip">2,500–5,000</button>
-                  <button type="button" class="chip">5,000–10,000</button>
-                  <button type="button" class="chip">10,000–25,000</button>
-                  <button type="button" class="chip">25,000+</button>
-                  <button type="button" class="chip">Not sure</button>
+                <h3 class="q-title" id="q-frequency">How often do you need cleaning?</h3>
+                <p class="q-hint">Pick what matches how busy your space is.</p>
+              </div>
+                <div class="chips chips-cards q-cards" data-group="frequency" role="group" aria-labelledby="q-frequency">
+                  <button type="button" class="chip chip-card" data-v="1x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">1x per week</span><span class="chip-s">Light use</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="2–3x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">2–3x per week</span><span class="chip-s">Typical office</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="5x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">5x per week</span><span class="chip-s">Every weekday</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="Daily"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Daily</span><span class="chip-s">High traffic</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="One-time / not sure"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">One-time / not sure</span><span class="chip-s">Let's talk</span></span></button>
                 </div>
-              </div>
-              <div>
-                <span class="lbl" id="g-cur">Do you currently have a cleaning company?</span>
-                <div class="chips" data-group="current_cleaner" role="group" aria-labelledby="g-cur">
-                  <button type="button" class="chip">Yes, switching</button>
-                  <button type="button" class="chip">No</button>
-                </div>
-              </div>
-              <div>
-                <span class="lbl" id="g-start">When would you like to start?</span>
-                <div class="chips" data-group="start_timeline" role="group" aria-labelledby="g-start">
-                  <button type="button" class="chip">ASAP</button>
-                  <button type="button" class="chip">Within 30 days</button>
-                  <button type="button" class="chip">1–3 months</button>
-                  <button type="button" class="chip">Just comparing</button>
-                </div>
-              </div>
-              <div>
-                <label class="lbl" for="zip">Facility ZIP code</label>
-                <input class="inp" id="zip" name="postal_code" type="text" inputmode="numeric" maxlength="5" placeholder="66061" autocomplete="postal-code" style="max-width: 200px">
-              </div>
               <p class="err" role="alert" hidden></p>
-              <div style="display: flex; gap: 10px">
-                <button type="button" class="btn btn-light" data-go="1" aria-label="Back">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
-                <button type="button" class="btn btn-primary" style="flex: 1" data-next="2">Almost done
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+              <div class="q-nav">
+                <button type="button" class="btn btn-light q-back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back</button>
+                <span class="q-tip">Pick one to continue</span>
               </div>
             </div>
-
-            <!-- STEP 3 -->
-            <div class="stepin" data-step="3" hidden style="margin-top: 22px; display: grid; gap: 14px">
-              <h3 class="cf-sub">Where should we send your booking link?</h3>
+            <!-- Q3 -->
+            <div class="stepin q" data-step="3" hidden>
+              <div>
+                <h3 class="q-title" id="q-square_footage">About how big is the space?</h3>
+                <p class="q-hint">A rough guess is fine. Justin confirms it at the walkthrough.</p>
+              </div>
+                <div class="chips chips-cards q-cards" data-group="square_footage" role="group" aria-labelledby="q-square_footage">
+                  <button type="button" class="chip chip-card" data-v="Under 2,500"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Under 2,500</span><span class="chip-s">sq ft · small office</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="2,500–5,000"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">2,500–5,000</span><span class="chip-s">sq ft</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="5,000–10,000"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">5,000–10,000</span><span class="chip-s">sq ft</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="10,000–25,000"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">10,000–25,000</span><span class="chip-s">sq ft</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="25,000+"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">25,000+</span><span class="chip-s">sq ft · large facility</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="Not sure"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Not sure</span><span class="chip-s">We'll measure it</span></span></button>
+                </div>
+              <p class="err" role="alert" hidden></p>
+              <div class="q-nav">
+                <button type="button" class="btn btn-light q-back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back</button>
+                <span class="q-tip">Pick one to continue</span>
+              </div>
+            </div>
+            <!-- Q4 -->
+            <div class="stepin q" data-step="4" hidden>
+              <div>
+                <h3 class="q-title" id="q-current_cleaner">Do you have a cleaning company right now?</h3>
+                <p class="q-hint">No pressure either way. It just helps us plan.</p>
+              </div>
+                <div class="chips chips-cards q-cards q-cards-2" data-group="current_cleaner" role="group" aria-labelledby="q-current_cleaner">
+                  <button type="button" class="chip chip-card" data-v="Yes, switching"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Yes, switching</span><span class="chip-s">Looking for a better option</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="No"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">No</span><span class="chip-s">First time or in-house</span></span></button>
+                </div>
+              <p class="err" role="alert" hidden></p>
+              <div class="q-nav">
+                <button type="button" class="btn btn-light q-back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back</button>
+                <span class="q-tip">Pick one to continue</span>
+              </div>
+            </div>
+            <!-- Q5 -->
+            <div class="stepin q" data-step="5" hidden>
+              <div>
+                <h3 class="q-title" id="q-start_timeline">When would you like cleaning to start?</h3>
+                <p class="q-hint">This helps Justin plan your proposal.</p>
+              </div>
+                <div class="chips chips-cards q-cards" data-group="start_timeline" role="group" aria-labelledby="q-start_timeline">
+                  <button type="button" class="chip chip-card" data-v="ASAP"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">ASAP</span><span class="chip-s">This week if possible</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="Within 30 days"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Within 30 days</span><span class="chip-s">Soon, not urgent</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="1–3 months"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">1–3 months</span><span class="chip-s">Planning ahead</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="Just comparing"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Just comparing</span><span class="chip-s">Getting quotes</span></span></button>
+                </div>
+              <p class="err" role="alert" hidden></p>
+              <div class="q-nav">
+                <button type="button" class="btn btn-light q-back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back</button>
+                <span class="q-tip">Pick one to continue</span>
+              </div>
+            </div>
+            <!-- Q6 -->
+            <div class="stepin q" data-step="6" hidden>
+              <div>
+                <h3 class="q-title" id="q-zip">What's the facility ZIP code?</h3>
+                <p class="q-hint">So we can confirm it's inside our Kansas City service area.</p>
+              </div>
+              <div class="q-zip">
+                <label class="sr-only" for="zip">Facility ZIP code</label>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+                <input class="inp inp-lg" id="zip" name="postal_code" type="text" inputmode="numeric" maxlength="5" placeholder="66061" autocomplete="postal-code">
+              </div>
+              <p class="err" role="alert" hidden></p>
+              <div class="q-nav">
+                <button type="button" class="btn btn-light q-back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back</button>
+                <button type="button" class="btn btn-primary" data-next style="flex: 1">Next <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+              </div>
+            </div>
+            <!-- Q7 -->
+            <div class="stepin q" data-step="7" hidden>
+              <div>
+                <h3 class="q-title" id="q-contact">Last step: where should we send your booking link?</h3>
+                <p class="q-hint">Next you'll pick a time for Justin to visit.</p>
+              </div>
+              <div class="q-contact">
               <div class="two">
                 <div><label class="lbl" for="fn">First name</label><input class="inp" id="fn" name="first_name" type="text" autocomplete="given-name" required></div>
                 <div><label class="lbl" for="ln">Last name</label><input class="inp" id="ln" name="last_name" type="text" autocomplete="family-name" required></div>
@@ -432,13 +488,13 @@ button:disabled{opacity:.7;cursor:wait}
                 <input type="checkbox" name="sms_consent" value="yes" style="width: 18px; height: 18px; margin: 2px 0 0; flex: none; accent-color: #1A64D6">
                 <span>By checking this box, you agree to receive text messages from CleanWave KC about your quote and appointment. Message and data rates may apply. Reply STOP to opt out. Message frequency varies. See our <a href="https://cleanwave-kc.vercel.app/privacy-policy">Privacy Policy</a>.</span>
               </label>
+              </div>
               <p class="err" role="alert" hidden></p>
-              <div style="display: flex; gap: 10px; margin-top: 4px">
-                <button type="button" class="btn btn-light" data-go="2" aria-label="Back">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+              <div class="q-nav">
+                <button type="button" class="btn btn-light q-back" data-back aria-label="Back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Back</button>
                 <button type="submit" class="btn btn-primary" style="flex: 1">Get My Free Walkthrough</button>
               </div>
-              <p style="margin: 0; font-size: 13px; color: #5A6B82; text-align: center">No obligation. Your details stay with CleanWave KC.</p>
+              <p class="cf-trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>No obligation · Your details stay with CleanWave KC</p>
             </div>
           </form>
         </div>

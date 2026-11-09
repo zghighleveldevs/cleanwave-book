@@ -10,11 +10,54 @@ var BOOKING_PAGE = 'book.html';
 (function () {
   var form = document.getElementById('qf');
   if (!form) return;
+  var TOTAL = 7;
   var answers = {};
   var current = '1';
+  var history = [];
   var autoTimer;
 
-  // Single-select option groups (tiles / chips)
+  function stepEl(id) { return form.querySelector('[data-step="' + id + '"]'); }
+  function errEl() { return stepEl(current).querySelector('.err'); }
+  function showErr(msg) { var e = errEl(); if (e) { e.textContent = msg; e.hidden = false; } }
+  function hideErr() { var e = errEl(); if (e) e.hidden = true; }
+
+  function setProgress() {
+    var n = parseInt(current, 10);
+    var progress = document.getElementById('qf-progress');
+    progress.hidden = current === 'res';
+    if (current === 'res') return;
+    document.getElementById('qf-steplabel').textContent = 'Question ' + n + ' of ' + TOTAL;
+    var pct = Math.round(((n - 1) / TOTAL) * 100);
+    document.getElementById('qf-pct').textContent = pct + '% done';
+    document.getElementById('qf-bar').style.width = Math.max(6, ((n - 0.5) / TOTAL) * 100) + '%';
+  }
+
+  function go(id, isBack) {
+    clearTimeout(autoTimer);
+    hideErr();
+    if (!isBack) history.push(current);
+    stepEl(current).hidden = true;
+    current = String(id);
+    var el = stepEl(current);
+    el.hidden = false;
+    // replay the entrance animation
+    el.classList.remove('stepin'); void el.offsetWidth; el.classList.add('stepin');
+    setProgress();
+    var input = el.querySelector('input:not([type=checkbox])');
+    if (input && window.matchMedia('(pointer: fine)').matches) setTimeout(function () { input.focus(); }, 350);
+    var top = form.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.6) {
+      document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function next() {
+    var n = parseInt(current, 10);
+    if (current === '1' && answers.facility === 'Residential home') return go('res');
+    if (n < TOTAL) go(n + 1);
+  }
+
+  // Single-choice questions: pick = save + move on automatically
   form.querySelectorAll('[data-group]').forEach(function (group) {
     var key = group.getAttribute('data-group');
     group.querySelectorAll('button').forEach(function (btn) {
@@ -28,63 +71,44 @@ var BOOKING_PAGE = 'book.html';
         btn.setAttribute('aria-pressed', 'true');
         answers[key] = btn.getAttribute('data-v') || btn.textContent.trim();
         hideErr();
-        // Step 1: once both questions are answered, move on automatically
-        if (current === '1' && answers.facility && answers.frequency && (key === 'facility' || key === 'frequency')) {
-          clearTimeout(autoTimer);
-          autoTimer = setTimeout(function () { if (current === '1') next1(); }, 650);
-        }
+        var at = current;
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(function () { if (current === at) next(); }, 450);
       });
     });
   });
 
-  function stepEl(id) { return form.querySelector('[data-step="' + id + '"]'); }
-  function errEl() { return stepEl(current).querySelector('.err'); }
-  function showErr(msg) { var e = errEl(); if (e) { e.textContent = msg; e.hidden = false; } }
-  function hideErr() { var e = errEl(); if (e) e.hidden = true; }
-
-  function go(id) {
-    hideErr();
-    stepEl(current).hidden = true;
-    current = String(id);
-    stepEl(current).hidden = false;
-    var progress = document.getElementById('qf-progress');
-    progress.hidden = current === 'res';
-    if (current !== 'res') {
-      document.getElementById('qf-steplabel').textContent = 'Step ' + current + ' of 3';
-      document.getElementById('qf-bar').style.width = { '1': '33.4%', '2': '66.7%', '3': '100%' }[current];
-      var n = parseInt(current, 10);
-      form.querySelectorAll('.stepper .sp').forEach(function (li, i) {
-        li.classList.toggle('sp-on', i + 1 === n);
-        li.classList.toggle('sp-done', i + 1 < n);
-        li.querySelector('.sp-n').innerHTML = i + 1 < n ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' : String(i + 1);
-      });
-    }
-    var first = stepEl(current).querySelector('input, button');
-    if (first && window.innerWidth < 900) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  form.querySelectorAll('[data-go]').forEach(function (b) {
+  // Back buttons
+  form.querySelectorAll('[data-back]').forEach(function (b) {
+    b.addEventListener('click', function () { if (history.length) go(history.pop(), true); });
+  });
+  // Residential screen: start over
+  form.querySelectorAll('[data-reset-res]').forEach(function (b) {
     b.addEventListener('click', function () {
-      if (b.hasAttribute('data-reset-res')) {
-        delete answers.facility;
-        form.querySelectorAll('[data-group="facility"] button').forEach(function (x) { x.classList.remove('tile-on'); x.setAttribute('aria-pressed', 'false'); });
-      }
-      go(b.getAttribute('data-go'));
+      delete answers.facility;
+      form.querySelectorAll('[data-group="facility"] button').forEach(function (x) { x.classList.remove('tile-on'); x.setAttribute('aria-pressed', 'false'); });
+      history = [];
+      go(1, true);
     });
   });
 
-  function next1() {
-    if (!answers.facility || !answers.frequency) return showErr('Pick your facility type and how often you need cleaning.');
-    go(answers.facility === 'Residential home' ? 'res' : 2);
-  }
-  form.querySelector('[data-next="1"]').addEventListener('click', function () { clearTimeout(autoTimer); next1(); });
-
-  form.querySelector('[data-next="2"]').addEventListener('click', function () {
-    if (!answers.square_footage || !answers.start_timeline) return showErr('Pick a square footage and a start time.');
+  // ZIP question
+  function zipNext() {
     var zip = form.postal_code.value.trim();
-    if (zip && !/^\d{5}$/.test(zip)) return showErr('Enter a 5-digit ZIP code.');
-    go(3);
+    if (!/^\d{5}$/.test(zip)) { form.postal_code.focus(); return showErr('Enter your 5-digit ZIP code.'); }
+    answers.postal_code = zip;
+    next();
+  }
+  form.querySelectorAll('[data-next]').forEach(function (b) { b.addEventListener('click', zipNext); });
+  form.postal_code.addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '').slice(0, 5);
+    hideErr();
   });
+  form.postal_code.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); zipNext(); }
+  });
+
+  setProgress();
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
