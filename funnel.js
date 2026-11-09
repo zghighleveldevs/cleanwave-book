@@ -153,12 +153,14 @@ var BOOKING_PAGE = 'book.html';
   });
 })();
 
-// Gentle 3D tilt of the form card following the mouse (desktop, motion allowed)
+// 3D parallax: the decorations (building, bubbles, spray bottle) drift with the mouse.
+// The form card itself stays still so clicks always land where people aim.
 (function () {
   var wrap = document.getElementById('quote');
-  var card = wrap && wrap.querySelector('.card-glow');
-  if (!card || !window.matchMedia) return;
+  if (!wrap || !window.matchMedia) return;
   if (!window.matchMedia('(pointer: fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var scene = wrap.querySelector('.scene');
+  var art = wrap.querySelector('.cf-head-art');
   var raf;
   wrap.addEventListener('mousemove', function (e) {
     var r = wrap.getBoundingClientRect();
@@ -166,10 +168,15 @@ var BOOKING_PAGE = 'book.html';
     var y = (e.clientY - r.top) / r.height - 0.5;
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(function () {
-      card.style.transform = 'rotateY(' + (x * 5).toFixed(2) + 'deg) rotateX(' + (-y * 4).toFixed(2) + 'deg)';
+      if (scene) scene.style.transform = 'translate3d(' + (x * -14).toFixed(1) + 'px,' + (y * -10).toFixed(1) + 'px,0)';
+      if (art) art.style.transform = 'translate3d(' + (x * 10).toFixed(1) + 'px,' + (y * 6).toFixed(1) + 'px,0) rotateY(' + (x * 14).toFixed(1) + 'deg)';
     });
   });
-  wrap.addEventListener('mouseleave', function () { cancelAnimationFrame(raf); card.style.transform = ''; });
+  wrap.addEventListener('mouseleave', function () {
+    cancelAnimationFrame(raf);
+    if (scene) scene.style.transform = '';
+    if (art) art.style.transform = '';
+  });
 })();
 
 // FAQ accordion: one open at a time
