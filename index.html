@@ -47,18 +47,81 @@ a{color:#1A64D6}a:hover{color:#0F4AA8}
 .d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}.d5{animation-delay:.5s}.d6{animation-delay:.62s}
 
 /* form card */
-.card-form{background:#fff;color:#0B1F3A;border-radius:22px;padding:30px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55)}
-@media (max-width:640px){.card-form{padding:22px 18px}}
-.track{height:8px;background:#E8EEF6;border-radius:99px;overflow:hidden}
-.bar{height:100%;background:var(--accent);border-radius:99px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.hero-form{position:relative;perspective:1400px}
+.card-glow{position:relative;z-index:1;border-radius:26px;padding:2px;background:conic-gradient(from var(--ang,0deg),rgba(127,227,214,.9),rgba(26,100,214,.25),rgba(127,227,214,.15),rgba(76,141,240,.9),rgba(127,227,214,.9));animation:spinAng 8s linear infinite;box-shadow:0 50px 90px -40px rgba(0,0,0,.7),0 0 60px -20px rgba(127,227,214,.45);transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spinAng{to{--ang:360deg}}
+.card-form{background:#fff;color:#0B1F3A;border-radius:24px;overflow:hidden}
+.cf-head{position:relative;display:flex;align-items:center;gap:12px;padding:24px 26px 20px;background:radial-gradient(120% 140% at 100% 0%,#1F4FA8 0%,#12305F 45%,#0B1F3A 100%);color:#fff;overflow:hidden}
+.cf-head::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(127,227,214,.6),transparent)}
+.cf-head-copy{flex:1 1 auto;min-width:0;position:relative;z-index:1}
+.cf-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#BFF3EC}
+.cf-title{font-size:clamp(22px,2.4vw,27px);line-height:1.15;margin-top:8px !important;color:#fff}
+.cf-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.cf-badge{font-size:13px;color:#C6D3E6;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:5px 11px}
+.cf-badge b{color:#7FE3D6;font-weight:800}
+.cf-head-art{position:relative;flex:none;width:128px;height:150px;margin:-14px -10px -24px 0}
+.b3d{width:100%;height:100%;overflow:visible;animation:bob 5s ease-in-out infinite;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35))}
+.b3d-shadow{transform-origin:120px 282px;animation:shadowPulse 5s ease-in-out infinite}
+.b3d-shine{animation:shineSweep 4.5s ease-in-out infinite}
+.w3d{fill:#7FE3D6;animation:winGlow 3s ease-in-out infinite}
+.cf-body{padding:22px 26px 26px}
+@media (max-width:640px){.cf-head{padding:20px 18px 16px}.cf-body{padding:18px 16px 22px}.cf-head-art{width:96px;height:112px;margin-right:-6px}}
+@media (max-width:380px){.cf-head-art{display:none}}
+.cf-sub{font-size:20px !important;line-height:1.2}
+.cf-trust{display:flex;align-items:center;justify-content:center;gap:8px;margin:-6px 0 0;font-size:13px;color:#5A6B82}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.stepper{list-style:none;margin:0 0 10px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sp{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#7A8AA0;transition:color .3s}
+.sp-n{flex:none;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:#EEF2F8;color:#7A8AA0;transition:all .35s cubic-bezier(.2,1.4,.4,1)}
+.sp-on{color:#0B1F3A}.sp-on .sp-n{background:var(--accent);color:#fff;transform:scale(1.08);box-shadow:0 6px 14px -6px var(--accent)}
+.sp-done{color:#0F766E}.sp-done .sp-n{background:#12A594;color:#fff}
+.track{height:6px;background:#E8EEF6;border-radius:99px;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,var(--accent),#4C8DF0,#7FE3D6);background-size:200% 100%;border-radius:99px;transition:width .6s cubic-bezier(.2,.7,.2,1);animation:barFlow 3s linear infinite}
+
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:520px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.tile,.chip{font-family:inherit;font-size:14px;font-weight:600;color:#0B1F3A;background:#F5F8FC;border:1.5px solid #D5DEEA;border-radius:12px;cursor:pointer;transition:all .18s ease;text-align:left}
-.tile{min-height:56px;padding:10px 12px;line-height:1.25}
-.chip{min-height:44px;padding:0 14px;text-align:center}
-.tile:hover,.chip:hover{border-color:var(--accent);transform:translateY(-1px)}
-.tile-on,.chip-on{background:#EAF2FF;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,100,214,.15);color:#0B1F3A}
+.tile,.chip{position:relative;font-family:inherit;font-size:14px;font-weight:600;color:#0B1F3A;background:#F7F9FD;border:1.5px solid #DCE4EF;border-radius:14px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,border-color .2s,background .2s;text-align:left}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:96px;padding:14px 12px 12px;line-height:1.25}
+.tile-ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);box-shadow:0 1px 0 #DCE4EF,0 6px 12px -8px rgba(11,31,58,.35);transition:transform .35s cubic-bezier(.2,1.4,.4,1),background .2s,color .2s}
+.tile-res .tile-ic{color:#8A6A3D}
+.tile:hover,.chip:hover{border-color:#9DBCF0;transform:translateY(-3px);box-shadow:0 14px 22px -16px rgba(11,31,58,.45);background:#fff}
+.tile:hover .tile-ic{transform:translateY(-2px) rotate(-6deg) scale(1.06)}
+.tick{position:absolute;top:9px;right:9px;width:20px;height:20px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform .35s cubic-bezier(.2,1.6,.4,1)}
+.tile-on,.chip-on{background:#EEF5FF;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,100,214,.14),0 14px 24px -18px var(--accent);color:#0B1F3A}
+.tile-on .tick{transform:scale(1)}
+.tile-on .tile-ic{background:var(--accent);color:#fff;transform:scale(1.08)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 14px;text-align:center}
+.chips-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.chip-card{display:flex;align-items:center;gap:10px;text-align:left;min-height:56px;padding:8px 12px}
+.chip-t{display:block;font-size:14px;font-weight:700;line-height:1.2}
+.chip-s{display:block;font-size:12px;font-weight:500;color:#5A6B82;margin-top:2px}
+.radio{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #B8C6DA;background:#fff;transition:all .25s ease}
+.chip-on .radio{border-color:var(--accent);box-shadow:inset 0 0 0 4px #fff;background:var(--accent)}
+
+@media (max-width:520px){.tile{flex-direction:row;align-items:center;min-height:62px;padding:10px 30px 10px 10px;gap:10px;font-size:13.5px}.tile-ic{width:34px;height:34px;flex:none}.tick{top:50%;margin-top:-10px;right:8px}.sp-t{font-size:12px;white-space:nowrap}.sp:not(.sp-on) .sp-t{display:none}.stepper{grid-template-columns:auto auto auto;justify-content:space-between}}
+/* 3D scene around the card */
+.scene{position:absolute;inset:0;pointer-events:none;z-index:2}
+.bub3d{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0 7%,rgba(255,255,255,.75) 10%,rgba(191,243,236,.35) 32%,rgba(76,141,240,.22) 62%,rgba(255,255,255,.55) 92%,rgba(255,255,255,.85) 100%);box-shadow:inset -8px -12px 22px rgba(26,100,214,.35),inset 6px 6px 14px rgba(255,255,255,.55),0 18px 30px -18px rgba(0,0,0,.5);animation:bubble 7s ease-in-out infinite;backdrop-filter:blur(1px)}
+.bub3d::after{content:"";position:absolute;left:22%;top:16%;width:26%;height:16%;border-radius:50%;background:rgba(255,255,255,.9);transform:rotate(-30deg);filter:blur(.5px)}
+.spark{position:absolute;color:#fff;animation:twinkle 2.6s ease-in-out infinite}
+.spark svg{width:100%;height:100%;display:block}
+.spray3d{position:absolute;left:-74px;bottom:70px;width:84px;height:140px;transform-origin:50% 90%;animation:sprayBob 6s ease-in-out infinite;filter:drop-shadow(0 16px 16px rgba(0,0,0,.35))}
+.mist{animation:mist 2.2s ease-out infinite}
+@media (max-width:1180px){.spray3d{display:none}}
+@media (max-width:640px){.bub3d:nth-child(1){left:-14px;top:-24px;width:60px !important;height:60px !important}.bub3d:nth-child(2),.bub3d:nth-child(4){display:none}}
+
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes shadowPulse{0%,100%{transform:scale(1);opacity:.28}50%{transform:scale(.86);opacity:.18}}
+@keyframes shineSweep{0%,55%{transform:translateX(-120px) skewX(-20deg)}100%{transform:translateX(220px) skewX(-20deg)}}
+@keyframes winGlow{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes bubble{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(6px,-14px,0) scale(1.04)}66%{transform:translate3d(-5px,-6px,0) scale(.97)}}
+@keyframes twinkle{0%,100%{transform:scale(.4) rotate(0deg);opacity:.2}50%{transform:scale(1) rotate(45deg);opacity:1}}
+@keyframes sprayBob{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(4deg) translateY(-10px)}}
+@keyframes mist{0%{opacity:0;transform:translate(0,0)}30%{opacity:1}100%{opacity:0;transform:translate(14px,-6px)}}
+@keyframes barFlow{to{background-position:-200% 0}}
 .lbl{display:block;font-size:13px;font-weight:700;color:#33465F;margin:0 0 8px}
 .inp{width:100%;min-height:48px;padding:0 14px;font-family:inherit;font-size:15px;color:#0B1F3A;background:#fff;border:1.5px solid #C9D4E3;border-radius:10px;transition:border-color .18s, box-shadow .18s}
 .inp:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,100,214,.18)}
@@ -184,46 +247,110 @@ button:disabled{opacity:.7;cursor:wait}
 
       <!-- ===== QUOTE FORM ===== -->
       <div class="hero-form fu d4" id="quote">
-        <div class="card-form">
-          <form id="qf" novalidate>
-            <div id="qf-progress">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px">
-                <span id="qf-steplabel" style="font-size: 13px; font-weight: 700; color: #33465F">Step 1 of 3</span>
-                <span style="font-size: 13px; color: #5A6B82">Takes about 60 seconds</span>
+        <div class="scene" aria-hidden="true">
+          <span class="bub3d" style="width: 92px; height: 92px; top: -34px; left: -40px; animation-delay: 0s"></span>
+          <span class="bub3d" style="width: 46px; height: 46px; top: 38%; right: -30px; animation-delay: 1.2s; animation-duration: 6s"></span>
+          <span class="bub3d" style="width: 64px; height: 64px; bottom: -26px; right: 22%; animation-delay: 2.1s; animation-duration: 8s"></span>
+          <span class="bub3d" style="width: 28px; height: 28px; bottom: 24%; left: -26px; animation-delay: .6s; animation-duration: 5.5s"></span>
+          <span class="spark" style="top: -18px; right: 30%; width: 22px; height: 22px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="currentColor"/></svg></span>
+          <span class="spark" style="top: 52%; left: -44px; width: 16px; height: 16px; animation-delay: .8s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="currentColor"/></svg></span>
+          <span class="spark" style="bottom: -30px; left: 30%; width: 18px; height: 18px; animation-delay: 1.6s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="currentColor"/></svg></span>
+          <svg class="spray3d" viewBox="0 0 120 200" aria-hidden="true">
+  <defs>
+    <linearGradient id="sb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5FD3C4"/><stop offset=".45" stop-color="#9BEFE3"/><stop offset="1" stop-color="#12A594"/></linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2F6FE0"/><stop offset=".5" stop-color="#6FA2FF"/><stop offset="1" stop-color="#1A4FB0"/></linearGradient>
+  </defs>
+  <ellipse cx="62" cy="192" rx="40" ry="7" fill="#000" opacity=".25"/>
+  <path d="M34 92c0-10 8-18 18-18h20c10 0 18 8 18 18v84c0 8-6 14-14 14H48c-8 0-14-6-14-14z" fill="url(#sb)"/>
+  <rect x="40" y="112" width="44" height="40" rx="8" fill="#fff" opacity=".9"/>
+  <path d="M52 124c3-4 6-4 9 0s6 4 9 0" stroke="#1A64D6" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M52 136c3-4 6-4 9 0s6 4 9 0" stroke="#12A594" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="48" y="58" width="28" height="20" rx="4" fill="url(#sh)"/>
+  <path d="M44 30h40c6 0 10 5 10 10v8c0 6-5 10-10 10H52l-8-10z" fill="url(#sh)"/>
+  <path d="M94 38h14v8H94z" fill="#1A4FB0"/>
+  <path d="M50 58c-6 4-8 12-6 22" stroke="#1A4FB0" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <rect x="40" y="92" width="6" height="70" rx="3" fill="#fff" opacity=".45"/>
+  <g class="mist"><circle cx="114" cy="36" r="3" fill="#BFF3EC"/><circle cx="118" cy="46" r="2" fill="#BFF3EC"/><circle cx="112" cy="28" r="2" fill="#fff"/></g>
+</svg>
+        </div>
+        <div class="card-glow">
+        <div class="card-form" id="qf-card">
+          <div class="cf-head">
+            <div class="cf-head-copy">
+              <span class="cf-eyebrow"><span class="dot"></span>Free walkthrough quote</span>
+              <h2 class="cf-title">Get your free walkthrough</h2>
+              <div class="cf-badges">
+                <span class="cf-badge"><b>$0</b> cost</span>
+                <span class="cf-badge"><b>30</b> min</span>
+                <span class="cf-badge"><b>48h</b> proposal</span>
               </div>
+            </div>
+            <div class="cf-head-art">
+              <svg class="b3d" viewBox="0 0 240 300" aria-hidden="true">
+  <defs>
+    <linearGradient id="gL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6E7FF"/><stop offset="1" stop-color="#A9C9FB"/></linearGradient>
+    <linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E7FEA"/><stop offset="1" stop-color="#1A4FB0"/></linearGradient>
+    <linearGradient id="gT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDF5F1"/></linearGradient>
+    <linearGradient id="gShine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <clipPath id="cR"><polygon points="120.0,120.0 210.0,75.0 210.0,215.0 120.0,260.0"/></clipPath>
+  </defs>
+  <ellipse cx="120" cy="282" rx="86" ry="14" fill="#000" opacity=".28" class="b3d-shadow"/>
+  <polygon fill="url(#gL)" points="30.0,75.0 120.0,120.0 120.0,260.0 30.0,215.0"/>
+  <polygon fill="url(#gR)" points="120.0,120.0 210.0,75.0 210.0,215.0 120.0,260.0"/>
+  <polygon fill="url(#gT)" points="120.0,30.0 210.0,75.0 120.0,120.0 30.0,75.0"/>
+  <polygon fill="#C9ECE6" points="120.0,75.0 138.0,66.0 138.0,52.0 120.0,61.0"/>
+  <polygon fill="#A8DCD3" points="102.0,66.0 120.0,75.0 120.0,61.0 102.0,52.0"/>
+  <polygon fill="#fff" points="102.0,52.0 120.0,43.0 138.0,52.0 120.0,61.0"/>
+  <polygon class="w3d" style="animation-delay:0.00s" points="40.8,100.4 57.0,108.5 57.0,122.5 40.8,114.4"/><polygon class="w3d" style="animation-delay:0.37s" points="65.1,112.5 81.3,120.7 81.3,134.7 65.1,126.5"/><polygon class="w3d" style="animation-delay:0.74s" points="89.4,124.7 105.6,132.8 105.6,146.8 89.4,138.7"/><polygon class="w3d" style="animation-delay:1.11s" points="40.8,124.4 57.0,132.5 57.0,146.5 40.8,138.4"/><polygon class="w3d" style="animation-delay:1.48s" points="65.1,136.6 81.3,144.7 81.3,158.7 65.1,150.6"/><polygon class="w3d" style="animation-delay:1.85s" points="89.4,148.7 105.6,156.8 105.6,170.8 89.4,162.7"/><polygon class="w3d" style="animation-delay:2.22s" points="40.8,148.4 57.0,156.5 57.0,170.5 40.8,162.4"/><polygon class="w3d" style="animation-delay:2.59s" points="65.1,160.6 81.3,168.7 81.3,182.7 65.1,174.6"/><polygon class="w3d" style="animation-delay:2.96s" points="89.4,172.7 105.6,180.8 105.6,194.8 89.4,186.7"/><polygon class="w3d" style="animation-delay:0.33s" points="40.8,172.4 57.0,180.5 57.0,194.5 40.8,186.4"/><polygon class="w3d" style="animation-delay:0.70s" points="65.1,184.6 81.3,192.7 81.3,206.7 65.1,198.6"/><polygon class="w3d" style="animation-delay:1.07s" points="89.4,196.7 105.6,204.8 105.6,218.8 89.4,210.7"/><polygon class="w3d" style="animation-delay:1.44s" points="40.8,196.4 57.0,204.5 57.0,218.5 40.8,210.4"/><polygon class="w3d" style="animation-delay:1.81s" points="65.1,208.6 81.3,216.7 81.3,230.7 65.1,222.6"/><polygon class="w3d" style="animation-delay:2.18s" points="89.4,220.7 105.6,228.8 105.6,242.8 89.4,234.7"/>
+  <polygon fill="#9CC3FF" opacity=".55" points="130.8,134.6 147.0,126.5 147.0,140.5 130.8,148.6"/><polygon fill="#9CC3FF" opacity=".55" points="155.1,122.5 171.3,114.3 171.3,128.3 155.1,136.4"/><polygon fill="#9CC3FF" opacity=".55" points="179.4,110.3 195.6,102.2 195.6,116.2 179.4,124.3"/><polygon fill="#9CC3FF" opacity=".55" points="130.8,158.6 147.0,150.5 147.0,164.5 130.8,172.6"/><polygon fill="#9CC3FF" opacity=".55" points="155.1,146.4 171.3,138.3 171.3,152.3 155.1,160.4"/><polygon fill="#9CC3FF" opacity=".55" points="179.4,134.3 195.6,126.2 195.6,140.2 179.4,148.3"/><polygon fill="#9CC3FF" opacity=".55" points="130.8,182.6 147.0,174.5 147.0,188.5 130.8,196.6"/><polygon fill="#9CC3FF" opacity=".55" points="155.1,170.4 171.3,162.3 171.3,176.3 155.1,184.4"/><polygon fill="#9CC3FF" opacity=".55" points="179.4,158.3 195.6,150.2 195.6,164.2 179.4,172.3"/><polygon fill="#9CC3FF" opacity=".55" points="130.8,206.6 147.0,198.5 147.0,212.5 130.8,220.6"/><polygon fill="#9CC3FF" opacity=".55" points="155.1,194.4 171.3,186.3 171.3,200.3 155.1,208.4"/><polygon fill="#9CC3FF" opacity=".55" points="179.4,182.3 195.6,174.2 195.6,188.2 179.4,196.3"/><polygon fill="#9CC3FF" opacity=".55" points="130.8,230.6 147.0,222.5 147.0,236.5 130.8,244.6"/><polygon fill="#9CC3FF" opacity=".55" points="155.1,218.4 171.3,210.3 171.3,224.3 155.1,232.4"/><polygon fill="#9CC3FF" opacity=".55" points="179.4,206.3 195.6,198.2 195.6,212.2 179.4,220.3"/>
+  <polygon fill="#0B1F3A" opacity=".75" points="67.8,207.9 82.2,215.1 82.2,241.1 67.8,233.9"/>
+  <g clip-path="url(#cR)"><rect class="b3d-shine" x="60" y="20" width="40" height="300" fill="url(#gShine)" transform="skewX(-20)"/></g>
+</svg>
+              <span class="spark" style="top: 6px; right: 6px; width: 16px; height: 16px; color: #7FE3D6"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="currentColor"/></svg></span>
+              <span class="spark" style="bottom: 28px; left: 0; width: 12px; height: 12px; animation-delay: 1.1s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z" fill="currentColor"/></svg></span>
+            </div>
+          </div>
+          <form id="qf" class="cf-body" novalidate>
+            <div id="qf-progress">
+              <ol class="stepper" aria-label="Form progress">
+                <li class="sp sp-on"><span class="sp-n">1</span><span class="sp-t">Facility</span></li>
+                <li class="sp"><span class="sp-n">2</span><span class="sp-t">Your space</span></li>
+                <li class="sp"><span class="sp-n">3</span><span class="sp-t">Contact</span></li>
+              </ol>
               <div class="track"><div class="bar" id="qf-bar" style="width: 33.4%"></div></div>
+              <span id="qf-steplabel" class="sr-only" aria-live="polite">Step 1 of 3</span>
             </div>
 
             <!-- STEP 1 -->
             <div class="stepin" data-step="1" style="margin-top: 22px; display: grid; gap: 22px">
-              <h2 style="font-size: 24px; line-height: 1.2">Get your free walkthrough</h2>
               <div>
                 <span class="lbl" id="g-facility">What type of facility?</span>
                 <div class="tiles" data-group="facility" role="group" aria-labelledby="g-facility">
-                  <button type="button" class="tile">Office</button>
-                  <button type="button" class="tile">Medical / Dental</button>
-                  <button type="button" class="tile">Retail</button>
-                  <button type="button" class="tile">Warehouse / Industrial</button>
-                  <button type="button" class="tile">Property / Multi-tenant</button>
-                  <button type="button" class="tile">School / Church / Daycare</button>
-                  <button type="button" class="tile">Gym / Fitness</button>
-                  <button type="button" class="tile">Other commercial</button>
-                  <button type="button" class="tile">Residential home</button>
+                  <button type="button" class="tile" data-v="Office"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M11 21v-3h2v3"/></svg></span><span class="tile-t">Office</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="Medical / Dental"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg></span><span class="tile-t">Medical /&#8203; Dental</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="Retail"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><span class="tile-t">Retail</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="Warehouse / Industrial"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-8h10v8M7 17h10"/></svg></span><span class="tile-t">Warehouse /&#8203; Industrial</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="Property / Multi-tenant"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 10h1M14 10h1M9 14h1M14 14h1M10 21v-3h4v3"/></svg></span><span class="tile-t">Property /&#8203; Multi-tenant</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="School / Church / Daycare"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M10 4h4"/><path d="M5 21V11l7-5 7 5v10"/><path d="M10 21v-5h4v5"/></svg></span><span class="tile-t">School /&#8203; Church /&#8203; Daycare</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="Gym / Fitness"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg></span><span class="tile-t">Gym /&#8203; Fitness</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile" data-v="Other commercial"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span class="tile-t">Other commercial</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+                  <button type="button" class="tile tile-res" data-v="Residential home"><span class="tile-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg></span><span class="tile-t">Residential home</span><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></button>
                 </div>
               </div>
               <div>
                 <span class="lbl" id="g-freq">How often do you need cleaning?</span>
-                <div class="chips" data-group="frequency" role="group" aria-labelledby="g-freq">
-                  <button type="button" class="chip">1x per week</button>
-                  <button type="button" class="chip">2–3x per week</button>
-                  <button type="button" class="chip">5x per week</button>
-                  <button type="button" class="chip">Daily</button>
-                  <button type="button" class="chip">One-time / not sure</button>
+                <div class="chips chips-cards" data-group="frequency" role="group" aria-labelledby="g-freq">
+                  <button type="button" class="chip chip-card" data-v="1x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">1x per week</span><span class="chip-s">Light use</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="2–3x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">2–3x per week</span><span class="chip-s">Most offices</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="5x per week"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">5x per week</span><span class="chip-s">Every weekday</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="Daily"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">Daily</span><span class="chip-s">High traffic</span></span></button>
+                  <button type="button" class="chip chip-card" data-v="One-time / not sure"><span class="radio" aria-hidden="true"></span><span><span class="chip-t">One-time / not sure</span><span class="chip-s">Let's talk</span></span></button>
                 </div>
               </div>
               <p class="err" role="alert" hidden></p>
               <button type="button" class="btn btn-primary btn-block" data-next="1">Continue
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+              <p class="cf-trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>No obligation · Your details stay with CleanWave KC</p>
             </div>
 
             <!-- RESIDENTIAL -->
@@ -238,7 +365,7 @@ button:disabled{opacity:.7;cursor:wait}
 
             <!-- STEP 2 -->
             <div class="stepin" data-step="2" hidden style="margin-top: 22px; display: grid; gap: 20px">
-              <h2 style="font-size: 24px; line-height: 1.2">Tell us about your space</h2>
+              <h3 class="cf-sub">Tell us about your space</h3>
               <div>
                 <span class="lbl" id="g-size">Approx. square footage</span>
                 <div class="chips" data-group="square_footage" role="group" aria-labelledby="g-size">
@@ -281,7 +408,7 @@ button:disabled{opacity:.7;cursor:wait}
 
             <!-- STEP 3 -->
             <div class="stepin" data-step="3" hidden style="margin-top: 22px; display: grid; gap: 14px">
-              <h2 style="font-size: 24px; line-height: 1.2">Where should we send your booking link?</h2>
+              <h3 class="cf-sub">Where should we send your booking link?</h3>
               <div class="two">
                 <div><label class="lbl" for="fn">First name</label><input class="inp" id="fn" name="first_name" type="text" autocomplete="given-name" required></div>
                 <div><label class="lbl" for="ln">Last name</label><input class="inp" id="ln" name="last_name" type="text" autocomplete="family-name" required></div>
@@ -314,6 +441,7 @@ button:disabled{opacity:.7;cursor:wait}
               <p style="margin: 0; font-size: 13px; color: #5A6B82; text-align: center">No obligation. Your details stay with CleanWave KC.</p>
             </div>
           </form>
+        </div>
         </div>
       </div>
     </div>

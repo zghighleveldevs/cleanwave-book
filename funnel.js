@@ -12,6 +12,7 @@ var BOOKING_PAGE = 'book.html';
   if (!form) return;
   var answers = {};
   var current = '1';
+  var autoTimer;
 
   // Single-select option groups (tiles / chips)
   form.querySelectorAll('[data-group]').forEach(function (group) {
@@ -25,8 +26,13 @@ var BOOKING_PAGE = 'book.html';
         });
         btn.classList.add(btn.classList.contains('tile') ? 'tile-on' : 'chip-on');
         btn.setAttribute('aria-pressed', 'true');
-        answers[key] = btn.textContent.trim();
+        answers[key] = btn.getAttribute('data-v') || btn.textContent.trim();
         hideErr();
+        // Step 1: once both questions are answered, move on automatically
+        if (current === '1' && answers.facility && answers.frequency && (key === 'facility' || key === 'frequency')) {
+          clearTimeout(autoTimer);
+          autoTimer = setTimeout(function () { if (current === '1') next1(); }, 650);
+        }
       });
     });
   });
@@ -46,6 +52,12 @@ var BOOKING_PAGE = 'book.html';
     if (current !== 'res') {
       document.getElementById('qf-steplabel').textContent = 'Step ' + current + ' of 3';
       document.getElementById('qf-bar').style.width = { '1': '33.4%', '2': '66.7%', '3': '100%' }[current];
+      var n = parseInt(current, 10);
+      form.querySelectorAll('.stepper .sp').forEach(function (li, i) {
+        li.classList.toggle('sp-on', i + 1 === n);
+        li.classList.toggle('sp-done', i + 1 < n);
+        li.querySelector('.sp-n').innerHTML = i + 1 < n ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>' : String(i + 1);
+      });
     }
     var first = stepEl(current).querySelector('input, button');
     if (first && window.innerWidth < 900) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -61,10 +73,11 @@ var BOOKING_PAGE = 'book.html';
     });
   });
 
-  form.querySelector('[data-next="1"]').addEventListener('click', function () {
+  function next1() {
     if (!answers.facility || !answers.frequency) return showErr('Pick your facility type and how often you need cleaning.');
     go(answers.facility === 'Residential home' ? 'res' : 2);
-  });
+  }
+  form.querySelector('[data-next="1"]').addEventListener('click', function () { clearTimeout(autoTimer); next1(); });
 
   form.querySelector('[data-next="2"]').addEventListener('click', function () {
     if (!answers.square_footage || !answers.start_timeline) return showErr('Pick a square footage and a start time.');
@@ -114,6 +127,25 @@ var BOOKING_PAGE = 'book.html';
       body: JSON.stringify(data)
     }).catch(function () {}).then(function () { window.location.href = next; });
   });
+})();
+
+// Gentle 3D tilt of the form card following the mouse (desktop, motion allowed)
+(function () {
+  var wrap = document.getElementById('quote');
+  var card = wrap && wrap.querySelector('.card-glow');
+  if (!card || !window.matchMedia) return;
+  if (!window.matchMedia('(pointer: fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var raf;
+  wrap.addEventListener('mousemove', function (e) {
+    var r = wrap.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width - 0.5;
+    var y = (e.clientY - r.top) / r.height - 0.5;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function () {
+      card.style.transform = 'rotateY(' + (x * 5).toFixed(2) + 'deg) rotateX(' + (-y * 4).toFixed(2) + 'deg)';
+    });
+  });
+  wrap.addEventListener('mouseleave', function () { cancelAnimationFrame(raf); card.style.transform = ''; });
 })();
 
 // FAQ accordion: one open at a time
